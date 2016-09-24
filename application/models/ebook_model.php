@@ -28,23 +28,6 @@ class Ebook_model extends CI_Model{
 
 	}
 	
-	public function insert_log($idEbook){
-		
-		$this-> db -> select ('idCliente');
-		$this-> db -> from ('Cliente');
-		$this-> db -> where('Login_Cli', $this->session->userdata('user') );
-		
-		$query = $this-> db -> get();
-		
-		$dados = $query->result();
-		
-		foreach ($dados as $idCliente):
-		$sql = "INSERT INTO log_cliente_ebook
-				VALUES ($idCliente->idCliente, $idEbook, 'Publicação', NOW());";
-		endforeach;
-		$query = $this->db->query($sql);
-	}
-	
 	public function get_catalogo_cli(){
 		
 		$sql = "select ebook.idEbook as idEbook, 

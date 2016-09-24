@@ -46,7 +46,6 @@ class Ebook extends CI_Controller {
 		
 		if ($result) {
 			set_msg ( "<p>Inserção feita com sucesso</p>" );
-			$this->ebook->insert_log ( $result );
 			redirect ( 'ebook', 'refresh' );
 		}
 	}

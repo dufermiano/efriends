@@ -77,7 +77,6 @@ class Cliente extends CI_Controller {
 		$dados_update ['email'] = $cliente ['email'];
 		$dados_update ['telefone'] = $cliente ['telefone'];
 		$dados_update ['cpf'] = $cliente ['cpf'];
-		$dados_update ['rg'] = $cliente ['rg'];
 		$dados_update ['senha'] = $cliente ['senha'];
 		$dados_update ['status'] = $cliente ['status'];
 		
