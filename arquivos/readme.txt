@@ -1,0 +1,1 @@
+Essa pasta é necessária para o upload temporário de arquivos

@@ -1,0 +1,29 @@
+@CHARSET "ISO-8859-1";
+
+.msg-box {
+	background: #f1f2ea;
+	border: 1px solid #c7cbab;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	/*color: #727272;*/
+}
+
+.msg-box p {
+	margin: 0;
+	padding: 2px 0;
+}
+
+.livro {
+	width: 210px;
+	height: 350px;
+	margin-top: 50px;
+	text-align: center;
+}
+
+.livro img {
+	width: 100%;
+}
+
+.livro h2 {
+	margin-top: 20px;
+}

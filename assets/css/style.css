@@ -1,0 +1,233 @@
+/*==== Geral ====*/
+*{box-sizing: border-box;}
+.mobile .desktop-only{display: none;}
+.desktop .mobile-only{display: none;}
+
+@font-face {
+
+    font-family: Montserrat-Light;
+    src: url('/fonts/Montserrat-Light.ttf');
+}
+
+@font-face {
+
+    font-family: Poppins-Bold;
+    src: url('/fonts/Poppins-Bold.ttf');
+}
+
+.desktop h1{font-family: Poppins-Bold, Arial, sans-serif; font-size: 30px; color: #c0392b;}
+.desktop h2{font-family: Poppins-Bold, Arial, sans-serif; font-size: 18px; color: #3b3b3b;}
+.desktop p{font-family: Montserrat-Light, Arial, sans-serif; font-size: 15px; color: #3b3b3b; line-height: 22px;}
+.desktop h3{font-family: Arial, sans-serif; font-size: 18px; color: #6c6a69;}
+/*==== Style Menu====*/
+.desktop nav{
+
+  width: 100%;
+  height: 50px;
+  /*background: #f8965d;*/
+  background: #c0392b;
+}
+
+  .desktop nav ul{
+
+    width: 483px;
+    height: 50px;
+    margin: 0 auto;
+    padding-top: 17px;
+    /*background: yellow;*/
+  }
+
+    .desktop nav li{
+
+      display: inline;
+      padding-left: 20px;
+    }
+
+    .desktop nav li:first-child{padding: 0;}
+
+      .desktop nav a{
+
+        font-size: 18px;
+        font-family: Montserrat-Light, Arial, sans-serif;
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .desktop nav a:hover{text-decoration: underline;}
+
+  .desktop .pesquisa{
+
+    top: -40px;
+    right: 140px;
+    position: relative;
+    float: right;
+  }
+
+  .desktop .pesquisa input[type="text"]{
+
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 5px;
+    -webkit-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .desktop .pesquisa input[type="text"]:focus{
+
+    width: 200px;
+    outline: none;
+  }
+/*==== Destaques ====*/
+.desktop section{width: 100%;}
+.desktop article{
+
+  width: 80%;
+  margin: 2% auto;
+  /*background: red;*/
+}
+
+  .desktop article hr{border: 1px solid #c0392b;}
+
+  .desktop .container{
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+    .desktop .livro{
+
+      width: 190px;
+      height: 350px;
+      position: relative;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+      .desktop .livro img{width: 100%;}
+      .desktop .livro h2{margin-top: 20px;}
+
+    .desktop .btn{
+
+      padding: 11px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      text-decoration: none;
+      color: #fff;
+      background: #3498db;
+      position: absolute;
+      top: 35%;
+      left: 25%;
+      opacity: 0;
+      webkit-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+    }
+
+    .desktop .livro:hover .btn{opacity: 1;}
+
+.desktop footer{
+
+  width: 100%;
+  height: 50px;
+  float: left;
+  border-top: 4px solid #c0392b;
+  background: #3f3f3f;
+}
+
+  .desktop footer p{
+
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+
+/*==== Mobile ====*/
+/*==== Geral ====*/
+.mobile h1{font-family: Poppins-Bold, Arial, sans-serif; font-size: 70px; color: #c0392b;}
+.mobile h2{font-family: Poppins-Bold, Arial, sans-serif; font-size: 50px; color: #3b3b3b;}
+.mobile h3{font-family: Arial, sans-serif; font-size: 18px; color: #6c6a69;}
+.mobile p{font-family: Montserrat-Light, Arial, sans-serif; font-size: 30px; color: #3b3b3b; line-height: 70px;}
+
+/*==== Menu ====*/
+.mobile .oc{
+
+  width: 100%;
+  height: 150px;
+  background: #c0392b;
+}
+
+  .mobile .oc img{
+
+    width: 13%;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+.mobile nav{
+
+  width: 100%;
+  height: 680px;
+  background: #c0392b;
+  display: none;
+}
+
+  .mobile nav li{
+
+    text-align: center;
+    padding-top: 50px;
+  }
+
+    .mobile nav li a{
+
+      text-decoration: none;
+      color: #fff;
+      font-family: Montserrat-Light, Arial, sans-serif;
+      font-size: 70px;
+    }
+/*==== Livros ====*/
+.mobile section{
+
+  width: 100%;
+  padding: 0 5%;
+  box-sizing: border-box;
+  /*background: red;*/
+}
+
+  .mobile article{margin-top: 150px;}
+    .mobile article hr{border: 1px solid #c0392b;}
+
+      .mobile .livro{
+
+        width: 60%;
+        margin: 150px auto;
+        text-align: center;
+      }
+
+        .mobile .livro img{width: 100%;}
+        .mobile .livro h2{padding-top: 50px; }
+
+/*==== Footer ====*/
+.mobile footer{
+
+  width: 100%;
+  height: 150px;
+  float: left;
+  border-top: 8px solid #c0392b;
+  background: #3f3f3f;
+}
+
+  .mobile footer p{
+
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+    margin-top: 50px;
+  }
