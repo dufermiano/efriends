@@ -10,13 +10,11 @@ class Admin_model extends CI_Model{
 	}
 	
 	public function login($login, $senha){
-		$this -> db -> select('idAdministrador, Login_Admin, Senha_Admin');
-		$this -> db -> from('Administrador');
-		$this->db->where('Login_Admin', $login);
-		$this->db->where('Senha_Admin', $senha);
-		$this->db->limit(1);
 		
-		$query = $this->db->get();
+		$sql = "select idAdministrador, Login_Admin from Administrador Where Login_Admin = '$login' AND Senha_Admin = '$senha' AND Status_Admin = true;";
+		
+		
+		$query = $this->db->query($sql);
 		
 		if($query -> num_rows() == 1){
 			return $query->result();
@@ -24,6 +22,7 @@ class Admin_model extends CI_Model{
 		else{
 			return false;
 		}
+		
 	}
 	
 	

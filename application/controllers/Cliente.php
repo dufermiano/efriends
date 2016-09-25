@@ -7,6 +7,46 @@ class Cliente extends CI_Controller {
 		$this->load->model('cliente_model', 'cliente');
 	}
 	
+	public function lista_clientes(){
+		$dados['clientes'] = $this->cliente->get_cli_lista();
+		$this->load->view('dashboard/clientes', $dados);
+	}
+	
+	public function lista_cli_ativos(){
+		$dados['clientes'] = $this->cliente->get_cli_lista();
+		$this->load->view('dashboard/clientes_ativos', $dados);
+	}
+	
+	public function muda_status(){
+		$cliente = $this->input->post();
+		
+		if($cliente['status'] == 'Ativo'):
+			$dados['status'] = false;
+		else:
+			$dados['status'] = true;
+		endif;
+		
+		$dados['id'] = $cliente['id'];
+		
+		$result = $this->cliente->muda_status($dados);
+		
+		if($result){
+			set_msg ( "<p>Mudança de status realizada</p>" );
+			
+			$idadmin = $this->cliente->get_id_admin();
+			
+			foreach($idadmin as $id):
+			$dados_tg['idadmin'] = $id->idAdministrador;
+			endforeach;
+			
+			$dados_tg['idcliente'] = $cliente['id'];
+			
+			$this->cliente->trigger_admin_cliente($dados_tg);
+			
+			redirect ( 'clientes', 'refresh' );
+		}
+	}
+	
 	public function insere_cliente(){
 					
 				$cliente = $this->input->post ();
@@ -33,7 +73,7 @@ class Cliente extends CI_Controller {
 			$result = $this->cliente->insert_cliente ( $dados_insert );
 			if ($result) {
 				set_msg ( "<p>Inserção feita com sucesso</p>" );
-				redirect ( 'plataforma/login', 'refresh' );
+				redirect ( 'login', 'refresh' );
 			}
 		
 		}
@@ -52,7 +92,7 @@ class Cliente extends CI_Controller {
 				$this->session->set_userdata("tipo", 'cliente');
 			}
 			$this->cliente->ativa_sessao();
-			redirect ( 'inicio_dash' );
+			redirect ( 'inicio_dash', 'refresh' );
 		}
 	}
 	
@@ -61,6 +101,7 @@ class Cliente extends CI_Controller {
 		$this->cliente->desativa_sessao();
 		$this->session->unset_userdata('user');
 		$this->session->unset_userdata('tipo');
+		$this->session->unset_userdata('status');
 		redirect("login");
 	}
 	

@@ -1,5 +1,11 @@
 <?php
+$sessao = $this->session->userdata('tipo');
+if($sessao == 'cliente'){
+	$this->load->view('dashboard/nav-cli');
+}
+else{
 	$this->load->view('dashboard/nav-admin');
+}
 	foreach ($ebook as $ebooks):
 	
 ?>
@@ -71,7 +77,6 @@
                                         <input type="file" name="obra">
                                         
                                         <button type="submit" role="button" id="update" class="btn btn-primary" style="margin-top: 10px;" >Alterar</button>
-                                        <a href="<?php echo base_url('index.php/Ebook/exclui_ebook')?>?cod=<?php echo $ebooks->idEbook ?>" role="button" class="btn btn-danger" id="excluir" style="margin-top: 10px;">Excluir</a>
                                         
                                         <p style="margin-top: 10px;"><?php // print $row["capa"]; ?></p>
                                         <?php endforeach;?>
@@ -90,7 +95,5 @@
     <script src="<?php echo base_url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/bower_components/metisMenu/dist/metisMenu.min.js')?>"></script>
     <script src="<?php echo base_url('assets/dist/js/sb-admin-2.js')?>"></script>
-
-
 </body>
 </html>

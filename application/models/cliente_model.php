@@ -29,13 +29,10 @@ class Cliente_model extends CI_Model{
 	
 	public function login($login, $senha){
 		
-		$this -> db -> select('idCliente, Login_Cli, Senha_Cli');
-		$this -> db -> from('Cliente');
-		$this->db->where('Login_Cli', $login);
-		$this->db->where('Senha_Cli', $senha);
-		$this->db->limit(1);
+		$sql = "select idCliente, Login_Cli from Cliente Where Login_Cli = '$login' AND Senha_Cli = '$senha' AND Status_Cli = true;";
 		
-		$query = $this->db->get();
+		
+		$query = $this->db->query($sql);
 		
 		if($query -> num_rows() == 1){
 			return $query->result();
@@ -90,7 +87,61 @@ class Cliente_model extends CI_Model{
 		return $this->db->affected_rows();
 	}
 	
+
+	public function delete_cliente($cod){
+		$this->db->set('Status_Cli', false);
+		$this->db->where('idCliente', $cod);
+		$this->db->update('Cliente');
+		return $this->db->affected_rows();
+	}
 	
+	public function get_cli_lista(){
+		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli');
+		$this-> db -> from ('Cliente');
+	
+		$query = $this-> db -> get();
+	
+		return $query->result();
+	}
+	
+	public function get_cli_ativo($valor){
+		$sql = "select idCliente, Nome_Cli, Status_Cli from Cliente where Status_Cli = true;";
+		$query = $this->db->query($sql);
+	
+		return $query->result();
+	}
+	
+	public function get_id_admin(){
+		$sql = "select idAdministrador from Administrador where sessao = true";
+		$query = $this->db->query($sql);
+		
+		return $query->result();
+		
+	}
+	
+	
+	public function trigger_admin_cliente($dados){
+		
+		$dados_tg = array(
+				'Administrador_idAdministrador' => $dados['idadmin'],
+				'Cliente_idCliente' => $dados['idcliente']
+		);
+			
+		$this->db->set('Data_Acao', 'NOW()', FALSE);
+		$this->db->insert('log_administrador_cliente', $dados_tg);
+			
+		return $this->db->insert_id();
+		
+	}
+	
+	public function muda_status($dados){
+		
+		$this-> db -> set('Status_Cli',$dados['status']);
+		$this-> db -> where('idCliente', $dados['id']);
+		$this-> db -> update('Cliente');
+		return $this-> db -> affected_rows();
+		
+	}
 	
 	
 }
