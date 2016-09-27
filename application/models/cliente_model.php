@@ -104,9 +104,22 @@ class Cliente_model extends CI_Model{
 		return $query->result();
 	}
 	
-	public function get_cli_ativo($valor){
-		$sql = "select idCliente, Nome_Cli, Status_Cli from Cliente where Status_Cli = true;";
-		$query = $this->db->query($sql);
+	public function get_cli_ativo(){
+		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli');
+		$this-> db -> from ('Cliente');
+		$this -> db -> where('Status_Cli', true);
+	
+		$query = $this-> db -> get();
+	
+		return $query->result();
+	}
+	
+	public function get_cli_inativo(){
+		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli');
+		$this-> db -> from ('Cliente');
+		$this -> db -> where('Status_Cli', false);
+	
+		$query = $this-> db -> get();
 	
 		return $query->result();
 	}

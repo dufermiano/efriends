@@ -12,9 +12,24 @@ class Cliente extends CI_Controller {
 		$this->load->view('dashboard/clientes', $dados);
 	}
 	
-	public function lista_cli_ativos(){
-		$dados['clientes'] = $this->cliente->get_cli_lista();
-		$this->load->view('dashboard/clientes_ativos', $dados);
+	public function lista_cli_ativo(){
+	
+		$cliente = $this->input->post();
+	
+		$dados['clientes'] = $this->cliente->get_cli_ativo();
+		echo json_encode($dados['clientes']);
+		
+		//$this->load->view('dashboard/clientes', $dados);
+	}
+	
+	public function lista_cli_inativo(){
+	
+		$cliente = $this->input->post();
+	
+		$dados['clientes'] = $this->cliente->get_cli_inativo();
+		echo json_encode($dados['clientes']);
+	
+		//$this->load->view('dashboard/clientes', $dados);
 	}
 	
 	public function muda_status(){

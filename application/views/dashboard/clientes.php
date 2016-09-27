@@ -5,11 +5,11 @@
 			<h1 class="page-header">Lista de Clientes</h1>
 		</div>
 		<div class="col-xs-3">
-		<!-- 	<select class="form-control" style='margin-left: 60px;' id="busca" onchange="filtra(this.value);">
+			<select class="form-control" style='margin-left: 60px;' id="busca" onchange="filtra(this.value);">
 				<option>Todos</option>
 				<option>Ativos</option>
 				<option>Inativos</option>
-			</select> -->
+			</select> 
 		</div>
 		<div class="col-lg-10 col-md-5">
 			<div class="panel">
@@ -17,7 +17,7 @@
 					<div class="row">
 					<?php if($msg = get_msg()): echo '<div class="msg-box" style="margin-left: 60px;" >'.$msg.'</div>'; endif;?>  
 					<div class="panel panel-primary" style='margin-left: 60px;'>
-							<table class="table table-striped table-hover" style="">
+							<table id="main_table" class="table table-striped table-hover" style="">
 								<thead>
 									<tr>
 										<th>Código do Cliente</th>
@@ -47,6 +47,56 @@
 		</div>
 	</div>
 </div>
+<script language="javascript" type="text/javascript">
+		function filtra(valor){
+			console.log("");
+			if(valor == "Ativos"){
+				$.ajax({
+					url: "index.php/Cliente/lista_cli_ativo",
+					type: "GET",
+					data: "" ,
+					dataType: 'json',
+					success: function (response){
+
+						for(i in response){
+						console.log(response[i]['idCliente']);
+						console.log(response[i]['Nome_Cli']);
+						console.log(response[i]['Status_Cli']);
+						}
+						//var table = $(data).find("#main_table");
+						//$('.panel-primary').html(table);
+
+						}
+
+					});
+				}
+			else if(valor == "Inativos"){
+				$.ajax({
+					
+					url: "index.php/Cliente/lista_cli_inativo",
+					data: "" ,
+					dataType: 'json',
+					success: function (response){
+
+						for(i in response){
+						console.log(response[i]['idCliente']);
+						console.log(response[i]['Nome_Cli']);
+						console.log(response[i]['Status_Cli']);
+						}
+						//var table = $(data).find("#main_table");
+						//$('.panel-primary').html(table);
+
+						}
+								
+
+					});
+				}
+			
+		
+
+		//}
+			}
+</script>
 <script
 	src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js')?>"></script>
 <script
