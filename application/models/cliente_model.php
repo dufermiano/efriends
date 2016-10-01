@@ -96,16 +96,16 @@ class Cliente_model extends CI_Model{
 	}
 	
 	public function get_cli_lista(){
-		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli');
+		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli, Login_Cli');
 		$this-> db -> from ('Cliente');
 	
 		$query = $this-> db -> get();
 	
 		return $query->result();
 	}
-	
+		
 	public function get_cli_ativo(){
-		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli');
+		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli, Login_Cli');
 		$this-> db -> from ('Cliente');
 		$this -> db -> where('Status_Cli', true);
 	
@@ -115,7 +115,7 @@ class Cliente_model extends CI_Model{
 	}
 	
 	public function get_cli_inativo(){
-		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli');
+		$this-> db -> select ('idCliente, Nome_Cli, Status_Cli, Login_Cli');
 		$this-> db -> from ('Cliente');
 		$this -> db -> where('Status_Cli', false);
 	

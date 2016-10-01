@@ -70,7 +70,7 @@ $route['catalogo_obra'] = 'ebook/catalogo_obra'; //direciona para catalogo.php
 $route['cadastro_obra'] = 'ebook'; //direciona para obra-cadastro.php
 $route['perfil'] = 'admin/perfil'; //direciona para perfil.php
 $route['gerencia_ebook'] = 'ebook/gerencia_ebook'; //direciona para gerencia-ebook.php
-$route['clientes'] = 'cliente/lista_clientes';//direciona para clientes.php
+$route['clientes'] = 'cliente/clientes';//direciona para clientes.php
 
 //rotas da plataforma
 

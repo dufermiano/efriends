@@ -7,56 +7,55 @@ class Cliente extends CI_Controller {
 		$this->load->model('cliente_model', 'cliente');
 	}
 	
-	public function lista_clientes(){
+	public function clientes(){
 		$dados['clientes'] = $this->cliente->get_cli_lista();
-		$this->load->view('dashboard/clientes', $dados);
+		$this->load->view('dashboard/clientes');
 	}
 	
+    public function lista_clientes(){
+		$dados['clientes'] = $this->cliente->get_cli_lista();
+		echo json_encode($dados['clientes']);
+	}
+
 	public function lista_cli_ativo(){
-	
-		$cliente = $this->input->post();
 	
 		$dados['clientes'] = $this->cliente->get_cli_ativo();
 		echo json_encode($dados['clientes']);
-		
-		//$this->load->view('dashboard/clientes', $dados);
 	}
 	
 	public function lista_cli_inativo(){
 	
-		$cliente = $this->input->post();
-	
 		$dados['clientes'] = $this->cliente->get_cli_inativo();
 		echo json_encode($dados['clientes']);
-	
-		//$this->load->view('dashboard/clientes', $dados);
+		
 	}
 	
 	public function muda_status(){
-		$cliente = $this->input->post();
+		$idcli =  $this->input->get ( 'cod' );
+		$status =  $this->input->get ( 'status' );
 		
-		if($cliente['status'] == 'Ativo'):
+		if($status == "Ativo"):
 			$dados['status'] = false;
 		else:
 			$dados['status'] = true;
 		endif;
 		
-		$dados['id'] = $cliente['id'];
+		$dados['id'] = $idcli;
 		
 		$result = $this->cliente->muda_status($dados);
-		
 		if($result){
 			set_msg ( "<p>Mudança de status realizada</p>" );
 			
 			$idadmin = $this->cliente->get_id_admin();
-			
+				
 			foreach($idadmin as $id):
 			$dados_tg['idadmin'] = $id->idAdministrador;
 			endforeach;
 			
-			$dados_tg['idcliente'] = $cliente['id'];
-			
+			$dados_tg['idcliente'] = $this->input->get ( 'cod' );
+				
 			$this->cliente->trigger_admin_cliente($dados_tg);
+			
 			
 			redirect ( 'clientes', 'refresh' );
 		}
