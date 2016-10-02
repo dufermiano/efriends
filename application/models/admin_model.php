@@ -13,7 +13,6 @@ class Admin_model extends CI_Model{
 		
 		$sql = "select idAdministrador, Login_Admin from Administrador Where Login_Admin = '$login' AND Senha_Admin = '$senha' AND Status_Admin = true;";
 		
-		
 		$query = $this->db->query($sql);
 		
 		if($query -> num_rows() == 1){
@@ -24,7 +23,6 @@ class Admin_model extends CI_Model{
 		}
 		
 	}
-	
 	
 	public function get_admin(){
 		$this-> db -> select ('*');
@@ -66,4 +64,18 @@ class Admin_model extends CI_Model{
 		$this-> db ->update('Administrador');
 		return $this->db->affected_rows();
 	}
+	
+	
+	public function troca_senha($senha, $user){
+	
+		$this->db->set('Senha_Admin', $senha);
+		$this->db->where ('Login_Admin', $user);
+		$this->db->update('Administrador');
+		return $this->db->affected_rows();
+	
+	
+	}
+	
+	
+	
 }

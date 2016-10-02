@@ -35,6 +35,8 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="<?php echo base_url('perfil_cli')?>"><i class="fa fa-user fa-fw"></i> Editar Perfil</a>
                         </li>
+                        <li><a href="<?php echo base_url('troca_senha')?>"><i class="fa fa-user fa-fw"></i> Trocar Senha</a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="<?php echo base_url('index.php/Cliente/logout')?>"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
                         </li>

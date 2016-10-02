@@ -6,10 +6,11 @@ class Cliente_model extends CI_Model{
 	function __construct(){
 		parent::__construct();
 		$this->load->library('session');
+		$this->load->helper('security');
 	}
 	
 	public function insert_cliente($dados){
-		
+
 		$dados_cliente = array(
 				'nome_cli' => $dados['nome'],
 				'email_cli' => $dados['email'],
@@ -153,6 +154,16 @@ class Cliente_model extends CI_Model{
 		$this-> db -> where('idCliente', $dados['id']);
 		$this-> db -> update('Cliente');
 		return $this-> db -> affected_rows();
+		
+	}
+	
+	public function troca_senha($senha, $user){
+		
+		$this->db->set('Senha_Cli', $senha);
+		$this->db->where ('Login_Cli', $user);
+		$this->db->update('Cliente');
+		return $this->db->affected_rows();
+		
 		
 	}
 	

@@ -63,7 +63,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 //rotas da dashboard
 
-$route['dashboard'] = 'dashboard/index'; //direciona para index.php
+$route['admin'] = 'dashboard/index'; //direciona para index.php
 $route['inicio_dash'] = 'dashboard/dashboard'; // direciona para dashboard.php
 $route['relatorios'] = 'dashboard/relatorios'; //direciona para relatorios.php
 $route['catalogo_obra'] = 'ebook/catalogo_obra'; //direciona para catalogo.php
@@ -71,6 +71,7 @@ $route['cadastro_obra'] = 'ebook'; //direciona para obra-cadastro.php
 $route['perfil'] = 'admin/perfil'; //direciona para perfil.php
 $route['gerencia_ebook'] = 'ebook/gerencia_ebook'; //direciona para gerencia-ebook.php
 $route['clientes'] = 'cliente/clientes';//direciona para clientes.php
+$route['troca_senha'] = 'dashboard/troca_senha';//direciona para troca_senha_adm.php
 
 //rotas da plataforma
 

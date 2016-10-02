@@ -12,22 +12,26 @@ class Admin extends CI_Controller {
 		$this->load->view ( 'dashboard/perfil', $dados_admin );
 	}
 	
-	public function login() {
+	public function troca_senha(){
+		$this->load->view('dashboard/troca_senha_adm');
+	}
 		
-		$dados_login = $this->input->post ();
-		
-		$result = $this->admin->login ( $dados_login ['login'], $dados_login ['password'] );
-		
+	public function login(){
+		$login = $this->input->post ('login', TRUE);
+		$senha = md5($this->input->post('senha', TRUE));
+	
+		$result = $this->admin->login ( $login, $senha );
+	
 		if ($result == false) {
 			set_msg ( "Erro no login. Verifique seu usuário e senha e tente novamente." );
-			redirect ( 'dashboard' );
+			redirect ( 'admin' );
 		} else {
 			foreach ($result as $row){
 				$this->session->set_userdata("user", $row->Login_Admin);
 				$this->session->set_userdata("tipo", 'admin');
 			}
 			$this->admin->ativa_sessao();
-			redirect ( 'dashboard/dashboard' );
+			redirect ( 'inicio_dash', 'refresh' );
 		}
 	}
 	
@@ -36,7 +40,7 @@ class Admin extends CI_Controller {
 		$this->admin->desativa_sessao();
 		$this->session->unset_userdata('user');
 		$this->session->unset_userdata('tipo');
-		redirect("dashboard");
+		redirect("admin");
 	}
 	
 	public function altera_admin(){
