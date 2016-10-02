@@ -5,10 +5,10 @@ USE efriends;
 CREATE TABLE Administrador (
   idAdministrador INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Login_Admin VARCHAR(15) UNIQUE NOT NULL,
-  Senha_Admin VARCHAR(15) NOT NULL,
+  Senha_Admin VARCHAR(100) NOT NULL,
   Nome_Admin VARCHAR(100) NOT NULL,
   Telefone_Admin INTEGER NOT NULL,
-  Email_Admin VARCHAR(20) NOT NULL,
+  Email_Admin VARCHAR(30) NOT NULL,
   Status_Admin BOOL NOT NULL DEFAULT TRUE,
   Sessao BOOL DEFAULT TRUE,
   Data_Cadastro DATETIME NOT NULL
@@ -22,7 +22,7 @@ CREATE TABLE Cliente (
   CPF_Cli VARCHAR(15) UNIQUE NOT NULL,
   Newsletter BOOL NOT NULL,
   Login_Cli VARCHAR(15) UNIQUE NOT NULL,
-  Senha_Cli VARCHAR(20) NOT NULL,
+  Senha_Cli VARCHAR(100) NOT NULL,
   Status_Cli BOOL NOT NULL DEFAULT TRUE,
   Data_Cadastro DATETIME NOT NULL, 
   Sessao BOOL DEFAULT TRUE
@@ -45,10 +45,13 @@ CREATE TABLE Log_Administrador_Cliente (
   Administrador_idAdministrador INTEGER NOT NULL,
   Cliente_idCliente INTEGER NOT NULL,
   Acao_Admin_Cli VARCHAR (50) NOT NULL,
-  Justificativa TINYTEXT NOT NULL,
+  Valor_Antigo VARCHAR (255) NOT NULL, 
+  Valor_Novo VARCHAR (255) NOT NULL,
   Data_Acao DATETIME NOT NULL,
   FOREIGN KEY (Administrador_idAdministrador) REFERENCES Administrador(idAdministrador), 
   FOREIGN KEY (Cliente_idCliente) REFERENCES Cliente(idCliente)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE Log_Administrador_Ebook (
@@ -62,6 +65,7 @@ CREATE TABLE Log_Administrador_Ebook (
   FOREIGN KEY (Administrador_idAdministrador) REFERENCES Administrador(idAdministrador), 
   FOREIGN KEY (Ebook_idEbook) REFERENCES Ebook(idEbook)
   ON UPDATE CASCADE
+  ON DELETE CASCADE
 );
 
 CREATE TABLE Log_Cliente_Ebook (
@@ -72,6 +76,7 @@ CREATE TABLE Log_Cliente_Ebook (
   FOREIGN KEY (Ebook_idEbook) REFERENCES Ebook(idEbook), 
   FOREIGN KEY (Cliente_idCliente) REFERENCES Cliente(idCliente)
   ON UPDATE CASCADE
+  ON DELETE CASCADE
 );
 
 CREATE TABLE Historico_Cliente (
@@ -83,6 +88,7 @@ CREATE TABLE Historico_Cliente (
   Data_Acao DATETIME NOT NULL,
   FOREIGN KEY (Cliente_idCliente) REFERENCES Cliente(idCliente)
   ON UPDATE CASCADE
+  ON DELETE CASCADE
 );
 
 DELIMITER $$
@@ -93,7 +99,7 @@ VALUES (Login, Senha, Nome, Telefone, Email, now());
 END $$
 DELIMITER ;
 
-CALL CadastraAdministrador("dufermiano", "123456", "Eduardo", "(11) 980357500", "dufermiano43@gmail.com");
+CALL CadastraAdministrador("dufermiano", md5("123456"), "Eduardo", "(11) 980357500", "dufermiano43@gmail.com");
 
 #trigger que audita data de uma PUBLICAÇÃO por parte de um usuário
 DELIMITER $$
@@ -107,12 +113,17 @@ END $$
 DELIMITER ;
 
 
-#trigger que faz a auditoria de alterações de dados do usuário na tabela HISTORICO_CLIENTE
+#trigger que faz a auditoria de alterações de dados do usuário na tabela HISTORICO_CLIENTE e LOG_ADMINISTRADOR_CLIENTE
 DELIMITER $$
 CREATE TRIGGER tg_audita_cli AFTER UPDATE 
 ON Cliente
 FOR EACH ROW
 BEGIN
+
+   IF (New.Status_Cli <> Old.Status_Cli) THEN
+	INSERT INTO LOG_ADMINISTRADOR_CLIENTE VALUES
+	((SELECT idAdministrador FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.idCliente , 'ALTERAÇÃO NO STATUS DO CLIENTE', OLD.Status_Cli, NEW.Status_Cli, NOW());
+   END IF;
 
  IF (New.Nome_Cli <> Old.Nome_Cli) THEN 
 	INSERT INTO HISTORICO_CLIENTE VALUES
@@ -137,11 +148,6 @@ END IF;
  IF (New.Senha_Cli <> Old.Senha_Cli) THEN
 	INSERT INTO HISTORICO_CLIENTE VALUES
 	((SELECT IDCLIENTE FROM CLIENTE WHERE SESSAO = TRUE), 'ALTERAÇÃO NA SENHA', 'Senha_Cli', OLD.Senha_Cli, NEW.Senha_Cli, NOW());
-END IF;
-
- IF (New.Status_Cli <> Old.Status_Cli) THEN
-	INSERT INTO HISTORICO_CLIENTE VALUES
-	((SELECT IDCLIENTE FROM CLIENTE WHERE SESSAO = TRUE), 'ALTERAÇÃO NO STATUS', 'Status_Cli', OLD.Status_Cli, NEW.Status_Cli, NOW());
 END IF;
 
 END $$

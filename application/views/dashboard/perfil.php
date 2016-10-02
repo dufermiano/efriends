@@ -33,10 +33,6 @@ foreach ( $admin as $row ) :
 										value="<?php echo $row->Login_Admin ?>" name="login" readonly>
 								</div>
 								<div class="form-group">
-									<label>Senha</label> <input class="form-control" type="text"
-										value="<?php echo $row->Senha_Admin ?>" name="senha" required>
-								</div>
-								<div class="form-group">
 									<label>Nome</label> <input class="form-control" type="text"
 										value="<?php echo$row->Nome_Admin ?>" name="nome" required>
 								</div>
@@ -50,20 +46,6 @@ foreach ( $admin as $row ) :
 									<label>E-mail</label> <input class="form-control" type="email"
 										value="<?php echo $row->Email_Admin ?>" name="email" required>
 								</div>
-
-								<div class="form-group">
-									<label>Status</label> <input class="form-control" readonly
-										name="status" id="statusInput"
-										value="<?php if($row->Status_Admin == true): echo "Ativo"; else : echo " Inativo"; endif;?>">
-
-									<select class="form-control" id="statusSelect"
-										style="margin-top: 5px;" onclick="trocaStatus()">
-										<option>Ativo</option>
-										<option>Inativo</option>
-									</select>
-
-								</div>
-
 								<div class="form-group">
 									<label>Data de cadastro</label> <input class="form-control"
 										type="text" value="<?php echo $row->Data_Cadastro ?>"

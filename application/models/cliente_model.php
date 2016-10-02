@@ -69,17 +69,10 @@ class Cliente_model extends CI_Model{
 	
 	public function update_cliente($cli){
 	
-		$this->db->set('Senha_Cli', $cli['senha']);
 		$this->db->set('Nome_Cli', $cli['nome']);
 		$this->db->set('Telefone_Cli', $cli['telefone']);
 		$this->db->set('Email_Cli', $cli['email']);
-		$this->db->set('Senha_Cli', $cli['senha']);
-		if($cli['status'] == "Ativo"){
-			$this->db->set('Status_Cli', true);
-		}
-		else{
-			$this->db->set('Status_Cli', false);
-		}
+
 		$this->db->set('CPF_Cli', $cli['cpf']);
 		$this->db->set('Newsletter', $cli['newsletter']);
 	
@@ -125,29 +118,6 @@ class Cliente_model extends CI_Model{
 		return $query->result();
 	}
 	
-	public function get_id_admin(){
-		$sql = "select idAdministrador from Administrador where sessao = true";
-		$query = $this->db->query($sql);
-		
-		return $query->result();
-		
-	}
-	
-	
-	public function trigger_admin_cliente($dados){
-		
-		$dados_tg = array(
-				'Administrador_idAdministrador' => $dados['idadmin'],
-				'Cliente_idCliente' => $dados['idcliente']
-		);
-			
-		$this->db->set('Data_Acao', 'NOW()', FALSE);
-		$this->db->insert('log_administrador_cliente', $dados_tg);
-			
-		return $this->db->insert_id();
-		
-	}
-	
 	public function muda_status($dados){
 		
 		$this-> db -> set('Status_Cli',$dados['status']);
@@ -165,6 +135,17 @@ class Cliente_model extends CI_Model{
 		return $this->db->affected_rows();
 		
 		
+	}
+	
+	public function get_senha(){
+		$this-> db -> select ('Senha_Cli');
+		$this-> db -> from ('Cliente');
+		$this-> db -> where('Login_Cli', $this->session->userdata('user') );
+		$this-> db -> limit(1);
+	
+		$query = $this-> db -> get();
+	
+		return $query->result();
 	}
 	
 	

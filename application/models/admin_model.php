@@ -48,29 +48,30 @@ class Admin_model extends CI_Model{
 	}
 	
 	public function update_admin($admin){
-
-		$this->db->set('Senha_Admin', $admin['senha']);
 		$this->db->set('Nome_Admin', $admin['nome']);
 		$this->db->set('Telefone_Admin', $admin['telefone']);
-		$this->db->set('Email_Admin', $admin['email']);
-		if($admin['status'] == "Ativo"){
-			$this->db->set('Status_Admin', true);
-		}
-		else{
-			$this->db->set('Status_Admin', false);
-		}
-		
+		$this->db->set('Email_Admin', $admin['email']);		
 		$this-> db -> where('Login_Admin', $this->session->userdata('user'));
 		$this-> db ->update('Administrador');
 		return $this->db->affected_rows();
 	}
 	
+	public function get_senha(){
+		$this-> db -> select ('Senha_Admin');
+		$this-> db -> from ('Administrador');
+		$this-> db -> where('Login_Admin', $this->session->userdata('user') );
+		$this-> db -> limit(1);
+		
+		$query = $this-> db -> get();
+		
+		return $query->result();
+	}
 	
 	public function troca_senha($senha, $user){
 	
 		$this->db->set('Senha_Admin', $senha);
 		$this->db->where ('Login_Admin', $user);
-		$this->db->update('Administrador');
+		$this->db->update('ADMINISTRADOR');
 		return $this->db->affected_rows();
 	
 	

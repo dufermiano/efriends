@@ -44,19 +44,7 @@ class Cliente extends CI_Controller {
 		
 		$result = $this->cliente->muda_status($dados);
 		if($result){
-			set_msg ( "<p>Mudança de status realizada</p>" );
-			
-			$idadmin = $this->cliente->get_id_admin();
-				
-			foreach($idadmin as $id):
-			$dados_tg['idadmin'] = $id->idAdministrador;
-			endforeach;
-			
-			$dados_tg['idcliente'] = $this->input->get ( 'cod' );
-				
-			$this->cliente->trigger_admin_cliente($dados_tg);
-			
-			
+			set_msg ( "<p>Mudança de status realizada</p>" );			
 			redirect ( 'clientes', 'refresh' );
 		}
 	}
@@ -121,7 +109,6 @@ class Cliente extends CI_Controller {
 		$this->cliente->desativa_sessao();
 		$this->session->unset_userdata('user');
 		$this->session->unset_userdata('tipo');
-		$this->session->unset_userdata('status');
 		redirect("login");
 	}
 	
@@ -138,8 +125,6 @@ class Cliente extends CI_Controller {
 		$dados_update ['email'] = $cliente ['email'];
 		$dados_update ['telefone'] = $cliente ['telefone'];
 		$dados_update ['cpf'] = $cliente ['cpf'];
-		$dados_update ['senha'] = $cliente ['senha'];
-		$dados_update ['status'] = $cliente ['status'];
 		
 		if(isset($cliente['news'])):
 		$dados_update['newsletter'] = true;

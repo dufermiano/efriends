@@ -26,8 +26,8 @@ else{
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Confirmar Nova Senha" name="senha2" type="password" value="" required>
                                 </div>
-                                <input type="hidden" name="sessao" value="<?php echo $sessao;?>">
-                                <input type="hidden" name="user" value="<?php echo $this->session->userdata("user"); ?>">
+                                <input type="hidden" name="sessao" value="<?php echo $this->session->userdata("tipo") ?>">
+                                <input type="hidden" name="user" value="<?php echo $this->session->userdata("user") ?>">
                                 <!-- Change this to a button or input when using this as a form -->
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">Trocar</button>
                             </fieldset>
