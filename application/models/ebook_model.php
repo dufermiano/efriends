@@ -105,6 +105,12 @@ class Ebook_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+	
+	public function todos(){
+		$this->db->where('Status_ebook', true);
+		$query = $this->db->get('ebook');
+		return $query->result();
+	}
 		
 
 }

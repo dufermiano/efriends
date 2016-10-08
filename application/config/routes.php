@@ -72,7 +72,7 @@ $route['perfil'] = 'admin/perfil'; //direciona para perfil.php
 $route['gerencia_ebook'] = 'ebook/gerencia_ebook'; //direciona para gerencia-ebook.php
 $route['clientes'] = 'cliente/clientes';//direciona para clientes.php
 $route['troca_senha'] = 'dashboard/troca_senha';//direciona para troca_senha_adm.php
-
+$route['logout'] = "cliente/logout";//chama função de logout
 //rotas da plataforma
 
 $route['sobre'] = 'ebook/sobre_livro';//direciona para sobre.php da plataforma

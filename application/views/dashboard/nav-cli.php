@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo base_url('inicio_dash')?>"><?php echo 'Bem vindo ao Efriends, '.$this->session->userdata('user');?></a>
+                <a class="navbar-brand" href="<?php echo base_url('plataforma')?>"><?php echo 'Voltar a plataforma de, '.$this->session->userdata('user');?></a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -38,7 +38,7 @@
                         <li><a href="<?php echo base_url('troca_senha')?>"><i class="fa fa-user fa-fw"></i> Trocar Senha</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo base_url('index.php/Cliente/logout')?>"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                        <li><a href="<?php echo base_url('logout')?>"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
                         </li>
                     </ul>
                 </li>

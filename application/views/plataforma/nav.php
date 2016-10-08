@@ -4,9 +4,9 @@
     <div class="mobile-only oc"><img src="img/menu.png"></div>
     <nav>
       <ul>
-        <li><a href="<?php echo base_url('')?>">E-Friends</a></li>
-        <li><a href="">Todos</a></li>
-        <li><a href="">Categorias</a></li>
+        <li><a href="<?php echo base_url('plataforma')?>">E-Friends</a></li>
+        <li><a href="<?php echo base_url('todos')?>">Todos</a></li>
+        <li><a href="<?php echo base_url('categoria')?>">Categorias</a></li>
         <li><a href="<?php echo base_url('cadastro_cli')?>">Cadastra-se</a></li>
         <li><a href="<?php echo base_url('login')?>">Login</a></li>
       </ul>

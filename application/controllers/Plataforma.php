@@ -24,7 +24,8 @@ class Plataforma extends CI_Controller {
 	}
 	
 	public function todos(){
-		$this->load->view('plataforma/todos');
+		$data['dados'] = $this->ebook->todos();
+		$this->load->view('plataforma/todos', $data);
 	}
 	
 	public function categorias(){
