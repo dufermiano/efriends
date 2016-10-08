@@ -43,8 +43,8 @@ function upload_s3($bucket, $object){
 		// cria o objeto do cliente, necessita passar as credenciais da AWS
 		$clientS3 = S3Client::factory(array(
 				// definição das credenciais AWS para S3
-				'key'    => '',
-				'secret' => ''
+				'key'    => null,
+				'secret' => null
 		));
 			
 		// método putObject envia os dados pro bucket selecionado das capas

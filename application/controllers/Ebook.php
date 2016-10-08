@@ -28,7 +28,7 @@ class Ebook extends CI_Controller {
 			$dados_insert ['preco'] = $ebook ['preco'];
 			$dados_insert ['categoria'] = $ebook ['categoria'];
 			
-			$dados_insert ['capa'] = upload_s3 ( 'efriends-users-capas', $upload_capa );
+			$dados_insert ['capa'] = upload_s3 ( 'users-capas', $upload_capa );
 			
 			// upload da capa realizado agora realizar da obra
 			
@@ -36,7 +36,7 @@ class Ebook extends CI_Controller {
 			
 			$upload_obra = $this->upload->data ();
 			
-			$dados_insert ['obra'] = upload_s3 ( 'efriends-users-obras', $upload_obra );
+			$dados_insert ['obra'] = upload_s3 ( 'users-obras', $upload_obra );
 		} else {
 			$msg = $this->upload->display_errors ();
 			set_msg ( $msg );
@@ -79,7 +79,7 @@ else {
 					$dados_ebook ['status'] = $ebook ['status'];
 					// update da capa no S3
 					
-					$dados_ebook ['capa'] = upload_s3 ( 'efriends-users-capas', $dados_upload );
+					$dados_ebook ['capa'] = upload_s3 ( 'users-capas', $dados_upload );
 				}  // se o upload tiver erro, exibe mensagem do CodeIgniter
 else {
 					$msg = $this->upload->upload_errors ();
@@ -99,7 +99,7 @@ else {
 					$dados_ebook ['status'] = $ebook ['status'];
 					// update da obra no S3
 					
-					$dados_ebook ['obra'] = upload_s3 ( 'efriends-users-obras', $dados_upload );
+					$dados_ebook ['obra'] = upload_s3 ( 'users-obras', $dados_upload );
 				}  // se o upload tiver erro, exibe mensagem do CodeIgniter
 else {
 					$msg = $this->upload->upload_errors ();
@@ -117,7 +117,7 @@ else {
 					$dados_ebook ['categoria'] = $ebook ['categoria'];
 					$dados_ebook ['status'] = $ebook ['status'];
 					
-					$dados_ebook ['capa'] = upload_s3 ( 'efriends-users-capas', $upload_capa );
+					$dados_ebook ['capa'] = upload_s3 ( 'users-capas', $upload_capa );
 					
 					// upload da capa realizado agora realizar da obra
 					
@@ -125,7 +125,7 @@ else {
 					
 					$upload_obra = $this->upload->data ();
 					
-					$dados_ebook ['obra'] = upload_s3 ( 'efriends-users-obras', $upload_obra );
+					$dados_ebook ['obra'] = upload_s3 ( 'users-obras', $upload_obra );
 				}  // se o upload tiver erro, exibe mensagem do CodeIgniter
 else {
 					$msg = $this->upload->upload_errors ();
