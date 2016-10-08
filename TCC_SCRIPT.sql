@@ -5,7 +5,7 @@ USE efriends;
 CREATE TABLE Administrador (
   idAdministrador INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Login_Admin VARCHAR(15) UNIQUE NOT NULL,
-  Senha_Admin VARCHAR(100) NOT NULL,
+  Senha_Admin VARCHAR(255) NOT NULL,
   Nome_Admin VARCHAR(100) NOT NULL,
   Telefone_Admin INTEGER NOT NULL,
   Email_Admin VARCHAR(30) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE Historico_Cliente (
 );
 
 DELIMITER $$
-CREATE PROCEDURE CadastraAdministrador(Login varchar(15), Senha varchar(10), Nome varchar(100), Telefone varchar(13), Email varchar(50))
+CREATE PROCEDURE CadastraAdministrador(Login varchar(15), Senha varchar(255), Nome varchar(100), Telefone varchar(13), Email varchar(50))
 BEGIN
 INSERT INTO Administrador(Login_Admin, Senha_Admin, Nome_Admin, Telefone_Admin, Email_Admin, Data_Cadastro)
 VALUES (Login, Senha, Nome, Telefone, Email, now());
