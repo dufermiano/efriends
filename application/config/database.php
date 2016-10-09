@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
+$active_group = 'aws';
 $query_builder = TRUE;
 
 $db['default'] = array( // no localhost
@@ -97,9 +97,9 @@ $db['default'] = array( // no localhost
 
 $db['aws'] = array( //localizado na aws
 		'dsn'	=> '',
-		'hostname' => 'url do rds',
+		'hostname' => 'efriends.cqptcrcmxexs.sa-east-1.rds.amazonaws.com',
 		'username' => 'root',
-		'password' => '',
+		'password' => 'efriendsdb',
 		'database' => 'efriends',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',

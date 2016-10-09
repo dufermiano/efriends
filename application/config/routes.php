@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'plataforma'; //controller padr�o da aplica��o
+$route['default_controller'] = 'Plataforma'; //controller padr�o da aplica��o
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -63,21 +63,21 @@ $route['translate_uri_dashes'] = FALSE;
 
 //rotas da dashboard
 
-$route['admin'] = 'dashboard/index'; //direciona para index.php
-$route['inicio_dash'] = 'dashboard/dashboard'; // direciona para dashboard.php
-$route['relatorios'] = 'dashboard/relatorios'; //direciona para relatorios.php
-$route['catalogo_obra'] = 'ebook/catalogo_obra'; //direciona para catalogo.php
-$route['cadastro_obra'] = 'ebook'; //direciona para obra-cadastro.php
-$route['perfil'] = 'admin/perfil'; //direciona para perfil.php
-$route['gerencia_ebook'] = 'ebook/gerencia_ebook'; //direciona para gerencia-ebook.php
-$route['clientes'] = 'cliente/clientes';//direciona para clientes.php
-$route['troca_senha'] = 'dashboard/troca_senha';//direciona para troca_senha_adm.php
-$route['logout'] = "cliente/logout";//chama função de logout
+$route['admin'] = 'Dashboard/index'; //direciona para index.php
+$route['inicio_dash'] = 'Dashboard/dashboard'; // direciona para dashboard.php
+$route['relatorios'] = 'Dashboard/relatorios'; //direciona para relatorios.php
+$route['catalogo_obra'] = 'Ebook/catalogo_obra'; //direciona para catalogo.php
+$route['cadastro_obra'] = 'Ebook'; //direciona para obra-cadastro.php
+$route['perfil'] = 'Admin/perfil'; //direciona para perfil.php
+$route['gerencia_ebook'] = 'Ebook/gerencia_ebook'; //direciona para gerencia-ebook.php
+$route['clientes'] = 'Cliente/clientes';//direciona para clientes.php
+$route['troca_senha'] = 'Dashboard/troca_senha';//direciona para troca_senha_adm.php
+$route['logout'] = "Cliente/logout";//chama função de logout
 //rotas da plataforma
 
-$route['sobre'] = 'ebook/sobre_livro';//direciona para sobre.php da plataforma
-$route['cadastro_cli'] = 'plataforma/cadastro_cli';
-$route['categorias'] = 'plataforma/categorias';
-$route['todos'] = 'plataforma/todos';
-$route['login'] = 'plataforma/login';
-$route['perfil_cli'] = 'cliente/perfil'; //direciona para perfil_cli.php, pagina do perfil do cliente
+$route['sobre'] = 'Ebook/sobre_livro';//direciona para sobre.php da plataforma
+$route['cadastro_cli'] = 'Plataforma/cadastro_cli';
+$route['categorias'] = 'Plataforma/categorias';
+$route['todos'] = 'Plataforma/todos';
+$route['login'] = 'Plataforma/login';
+$route['perfil_cli'] = 'Cliente/perfil'; //direciona para perfil_cli.php, pagina do perfil do cliente

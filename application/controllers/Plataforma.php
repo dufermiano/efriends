@@ -6,13 +6,19 @@ class Plataforma extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('ebook_model', 'ebook');
+		$this->load->model('Ebook_model', 'ebook');
 	}
 
 	public function index()
 	{
 		$data['dados'] = $this->ebook->carrega_site();
-		$this->load->view('plataforma/index', $data);
+		if($data['dados'] == null){
+			$this->load->view('plataforma/index');
+		}
+		else{
+			$this->load->view('plataforma/index', $data);
+		}
+		
 	}
 	
 	public function sobre(){

@@ -92,7 +92,7 @@ class Ebook_model extends CI_Model{
 	public function carrega_site(){
 		$this->db->where('Status_ebook', true);
 		$this->db->limit(5);
-		$query = $this->db->get('ebook');
+		$query = $this->db->get('Ebook');
 		return $query->result();
 	}
 	

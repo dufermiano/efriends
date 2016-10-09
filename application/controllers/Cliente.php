@@ -4,7 +4,7 @@ class Cliente extends CI_Controller {
 	function __construct() {
 		parent::__construct ();
 		$this->load->helper ( 'url' );
-		$this->load->model('cliente_model', 'cliente');
+		$this->load->model('Cliente_model', 'cliente');
 	}
 	
 	public function clientes(){
@@ -64,7 +64,7 @@ class Cliente extends CI_Controller {
 				if($post_password1 != $post_password2){
 					
 					set_msg ( "<p>Senhas devem coincidir</p>" );
-					redirect ( 'plataforma/cadastro_cli', 'refresh' );
+					redirect ( 'cadastro_cli', 'refresh' );
 				}
 				else{
 				$dados_insert ['senha'] = $post_password1;
@@ -100,7 +100,8 @@ class Cliente extends CI_Controller {
 				$this->session->set_userdata("tipo", 'cliente');
 			}
 			$this->cliente->ativa_sessao();
-			redirect ( 'inicio_dash', 'refresh' );
+			redirect ( 'plataforma', 'refresh' );
+			
 		}
 	}
 	
@@ -109,12 +110,12 @@ class Cliente extends CI_Controller {
 		$this->cliente->desativa_sessao();
 		$this->session->unset_userdata('user');
 		$this->session->unset_userdata('tipo');
-		redirect("login");
+		redirect("plataforma", "refresh");
 	}
 	
 	public function perfil(){
 		$dados_cliente ["cliente"] = $this->cliente->get_cli();
-		$this->load->view ( 'dashboard/perfil_cli', $dados_cliente );
+		$this->load->view ( 'perfil_cli', $dados_cliente );
 	}
 	
 	public function altera_cliente(){

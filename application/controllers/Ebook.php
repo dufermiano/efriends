@@ -7,7 +7,7 @@ class Ebook extends CI_Controller {
 		/* carrega a library de upload */
 		parent::__construct ();
 		$this->load->helper ( 'url' );
-		$this->load->model ( 'ebook_model', 'ebook' );
+		$this->load->model ( 'Ebook_model', 'ebook' );
 		$this->load->library ( 'upload', upload_capa () );
 	}
 	
@@ -162,7 +162,7 @@ else {
 		if ($result) {
 			set_msg ( "<p>Exclusão feita com sucesso</p>" );
 			
-			redirect ( 'ebook/catalogo_obra', 'refresh' );
+			redirect ( 'catalogo_obra', 'refresh' );
 		}
 	}
 	
@@ -176,14 +176,14 @@ else {
 			$dados_ebook ['ebook'] = $this->ebook->get_catalogo_geral ();
 		}
 		
-		$this->load->view ( 'dashboard/catalogo-obra', $dados_ebook );
+		$this->load->view ( 'catalogo_obra', $dados_ebook );
 	}
 	
 	// carrega o gerenciamento do ebook selecionado no catalogo
 	public function gerencia_ebook() {
 		$dados_ebook ['ebook'] = $this->ebook->get_ebook ( $this->input->get ( 'cod' ) );
 		
-		$this->load->view ( 'dashboard/gerencia-ebook', $dados_ebook );
+		$this->load->view ( 'gerencia_ebook', $dados_ebook );
 	}
 	
 	// carrega o livro selecionado ao clicar no botão 'sobre'
@@ -192,7 +192,7 @@ else {
 		$dados_ebook ['ebook'] = $this->ebook->sobre ( $this->input->get ( 'cod' ) );
 		
 		
-		$this->load->view ( 'plataforma/sobre', $dados_ebook );
+		$this->load->view ( 'sobre', $dados_ebook );
 		
 	}
 }

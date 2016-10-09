@@ -37,7 +37,7 @@ class Dashboard extends CI_Controller {
 		$user = $this->input->post('user');
 		
 		if($sessao == "cliente"){
-			$this->load->model ( 'cliente_model', 'cliente' );
+			$this->load->model ( 'Cliente_model', 'cliente' );
 			
 			$r = $this->cliente->get_senha();
 				
@@ -53,7 +53,7 @@ class Dashboard extends CI_Controller {
 			
 		}
 		if($sessao == "admin"){
-			$this->load->model ('admin_model','admin');
+			$this->load->model ('Admin_model','admin');
 			
 			$r = $this->admin->get_senha();
 			

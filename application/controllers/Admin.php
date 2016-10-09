@@ -4,7 +4,7 @@ class Admin extends CI_Controller {
 	function __construct() {
 		parent::__construct ();
 		$this->load->helper ( 'url' );
-		$this->load->model ( 'admin_model', 'admin' );
+		$this->load->model ( 'Admin_model', 'admin' );
 		$this->load->library ( 'session' );
 	}
 	public function perfil() {
@@ -51,7 +51,7 @@ class Admin extends CI_Controller {
 			if ($result) {
 				set_msg ( "<p class='text-sucess'>Alteração feita com sucesso</p>" );
 				$this->session->set_userdata("user", $dados['login']);
-				redirect ( 'admin/perfil', 'refresh' );
+				redirect ( 'perfil', 'refresh' );
 			}
 	}
 	

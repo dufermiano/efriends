@@ -24,7 +24,6 @@
 
   width: 100%;
   height: 50px;
-  /*background: #f8965d;*/
   background: #c0392b;
 }
 
@@ -34,7 +33,6 @@
     height: 50px;
     margin: 0 auto;
     padding-top: 17px;
-    /*background: yellow;*/
   }
 
     .desktop nav li{
@@ -58,7 +56,7 @@
   .desktop .pesquisa{
 
     top: -40px;
-    right: 140px;
+    right: 237px;
     position: relative;
     float: right;
   }
@@ -79,6 +77,18 @@
     width: 200px;
     outline: none;
   }
+
+  .desktop .user{
+
+    width: 155px;
+    float: right;
+    top: 15px;
+    right: 0;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .desktop .user p{color: #fff;}
 /*==== Destaques ====*/
 .desktop section{width: 100%;}
 .desktop article{
