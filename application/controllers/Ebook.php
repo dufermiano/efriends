@@ -176,14 +176,14 @@ else {
 			$dados_ebook ['ebook'] = $this->ebook->get_catalogo_geral ();
 		}
 		
-		$this->load->view ( 'catalogo_obra', $dados_ebook );
+		$this->load->view ( 'dashboard/catalogo-obra', $dados_ebook );
 	}
 	
 	// carrega o gerenciamento do ebook selecionado no catalogo
 	public function gerencia_ebook() {
 		$dados_ebook ['ebook'] = $this->ebook->get_ebook ( $this->input->get ( 'cod' ) );
 		
-		$this->load->view ( 'gerencia_ebook', $dados_ebook );
+		$this->load->view ( 'dashboard/gerencia-ebook', $dados_ebook );
 	}
 	
 	// carrega o livro selecionado ao clicar no botão 'sobre'
@@ -192,7 +192,7 @@ else {
 		$dados_ebook ['ebook'] = $this->ebook->sobre ( $this->input->get ( 'cod' ) );
 		
 		
-		$this->load->view ( 'sobre', $dados_ebook );
+		$this->load->view ( 'plataforma/sobre', $dados_ebook );
 		
 	}
 }

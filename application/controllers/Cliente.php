@@ -115,7 +115,7 @@ class Cliente extends CI_Controller {
 	
 	public function perfil(){
 		$dados_cliente ["cliente"] = $this->cliente->get_cli();
-		$this->load->view ( 'perfil_cli', $dados_cliente );
+		$this->load->view ( 'dashboard/perfil_cli', $dados_cliente );
 	}
 	
 	public function altera_cliente(){

@@ -1,4 +1,4 @@
-<?php include("head.php");?>
+<?php $this->load->view("dashboard/head");?>
 <link rel="stylesheet" href="<?php echo base_url('assets/css/cadastro.css')?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/painel.css')?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
