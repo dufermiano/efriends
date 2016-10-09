@@ -43,7 +43,6 @@ class Ebook extends CI_Controller {
 		}
 		
 		$result = $this->ebook->insert_ebook ( $dados_insert );
-		
 		if ($result) {
 			set_msg ( "<p>Inserção feita com sucesso</p>" );
 			redirect ( 'ebook', 'refresh' );
@@ -149,7 +148,7 @@ else {
 		
 		if ($result) {
 			set_msg ( "<p>Alteração feita com sucesso</p>" );
-			redirect ( 'ebook/catalogo_obra', 'refresh' );
+			redirect ( 'catalogo_obra', 'refresh' );
 		}
 	}
 	
