@@ -7,8 +7,17 @@
         <li><a href="<?php echo base_url('plataforma')?>">E-Friends</a></li>
         <li><a href="<?php echo base_url('todos')?>">Todos</a></li>
         <li><a href="<?php echo base_url('categorias')?>">Categorias</a></li>
-        <li><a href="<?php echo base_url('cadastro_cli')?>">Cadastra-se</a></li>
-        <li><a href="<?php echo base_url('login')?>">Login</a></li>
+        <?php 
+        	$user = $this->session->userdata('user');
+        	$tipo = $this->session->userdata('tipo'); 	
+        	if($user == null && $tipo != 'cliente'):
+        	?>
+        		<li><a href="<?php echo base_url('cadastro_cli')?>">Cadastra-se</a></li>
+        		<li><a href="<?php echo base_url('login')?>">Login</a></li>
+        	<?php else:?>
+        		<li><a href="<?php echo base_url('logout')?>">Logout</a></li>
+        	<?php endif; ?>
+        
       </ul>
       <div class="desktop-only pesquisa">
         <input type="text" placeholder="Pesquisar...">
