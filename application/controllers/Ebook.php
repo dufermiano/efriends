@@ -189,8 +189,7 @@ else {
 	public function sobre_livro() {
 		
 		$dados_ebook ['ebook'] = $this->ebook->sobre ( $this->input->get ( 'cod' ) );
-		
-		
+
 		$this->load->view ( 'plataforma/sobre', $dados_ebook );
 		
 	}

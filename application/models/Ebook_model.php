@@ -99,8 +99,10 @@ class Ebook_model extends CI_Model{
 	//funcao que carrega o livro na seção 
 	public function sobre($idEbook){
 		
-		$this->db->select('Titulo_Ebook, Descricao_Ebook, Autor_Ebook, Preco_Ebook, Capa, Categoria');
-		$this->db->from('ebook');
+		$this->db->select('Ebook.Titulo_Ebook, Ebook.Descricao_Ebook, Ebook.Autor_Ebook, Ebook.Preco_Ebook, Ebook.Capa, Ebook.Categoria, Cliente.Nome_Cli');
+		$this->db->from('log_cliente_ebook');
+		$this->db->join('Cliente', "Cliente.idCliente = log_cliente_ebook.Cliente_idCliente", 'inner' );
+		$this->db->join('Ebook', "Ebook.idEbook = log_cliente_ebook.Ebook_idEbook", 'inner' );
 		$this-> db -> where ('idEbook', $idEbook);
 		$query = $this->db->get();
 		return $query->result();

@@ -11,6 +11,7 @@
       <h1><?php echo $dados->Titulo_Ebook ?></h1><br>
       <h2><?php echo $dados->Categoria ?></h2><br>
       <p><?php echo $dados->Autor_Ebook ?></p>
+      <p>Dono do ebook: <?php echo $dados->Nome_Cli ?></p>
       <div class="valor">
         <div class="width50">
           <h2>R$ <?php echo $dados->Preco_Ebook ?></h2>
