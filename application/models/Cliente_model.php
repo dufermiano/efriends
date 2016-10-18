@@ -24,9 +24,9 @@ class Cliente_model extends CI_Model{
 			
 		$this->db->set('data_cadastro', 'NOW()', FALSE);
 		$this->db->insert('cliente', $dados_cliente);
-		 
+		
 		return $this->db->insert_id();
-	}
+		}
 	
 	public function login($login, $senha){
 		
@@ -40,6 +40,40 @@ class Cliente_model extends CI_Model{
 		}
 		else{
 			return false;
+		}
+	}
+	
+	public function checa_cpf($cpf){
+		
+		$this-> db -> select ('Login_Cli');
+		$this-> db -> from ('Cliente');
+		$this-> db -> where('CPF_Cli', $cpf );
+		$this-> db -> limit(1);
+		
+		$query = $this-> db -> get();
+	
+		if($query->num_rows() != 0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public function checa_login($login){
+	
+		$this-> db -> select ('idCliente');
+		$this-> db -> from ('Cliente');
+		$this-> db -> where('Login_Cli', $login );
+		$this-> db -> limit(1);
+	
+		$query = $this-> db -> get();
+	
+		if($query->num_rows() != 0){
+			return false;
+		}
+		else{
+			return true;
 		}
 	}
 	
@@ -147,6 +181,7 @@ class Cliente_model extends CI_Model{
 	
 		return $query->result();
 	}
+	
 	
 	
 }

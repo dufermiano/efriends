@@ -4,7 +4,7 @@ class Cliente extends CI_Controller {
 	function __construct() {
 		parent::__construct ();
 		$this->load->helper ( 'url' );
-		$this->load->model('Cliente_model', 'cliente');
+		$this->load->model('cliente_model', 'cliente');
 	}
 	
 	public function clientes(){
@@ -52,7 +52,25 @@ class Cliente extends CI_Controller {
 	public function insere_cliente(){
 					
 				$cliente = $this->input->post ();
+			
+				$cpf = $cliente['cpf'];
 				
+				$r = $this->cliente->checa_cpf($cpf);
+				if($r == false){
+					set_msg ( "<p>CPF já existente no sistema, favor inserir outro</p>" );
+					redirect ( 'cadastro_cli', 'refresh' );
+					return false;
+				}
+				
+				$login = $cliente ['login'];
+				
+				$r = $this->cliente->checa_login($login);
+				if($r == false){
+					set_msg ( "<p>Login já existente no sistema, favor inserir outro</p>" );
+					redirect ( 'cadastro_cli', 'refresh' );
+					return false;
+				}
+			
 				$post_password1 = md5($this->input->post('senha', TRUE));
 				$post_password2 = md5($this->input->post('senha2', TRUE));
 				
@@ -74,9 +92,9 @@ class Cliente extends CI_Controller {
 				else:
 				$dados_insert['newsletter'] = false;
 				endif;
-				
-				
+
 			$result = $this->cliente->insert_cliente ( $dados_insert );
+			
 				}
 			if ($result) {
 				set_msg ( "<p>Inserção feita com sucesso</p>" );
