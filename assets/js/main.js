@@ -20,6 +20,7 @@ function filtra(valor){
 
 function getCliente(url){
 	$("#corpo").empty();
+	var base = "obra_cli";
 	$.ajax({
 		url: url,
 		type: "GET",
@@ -38,7 +39,8 @@ function getCliente(url){
 						$('<td>').text(item.Login_Cli),
 						$('<td>').text(item.Nome_Cli),
 						$('<td>').append(sta),
-						$('<a class="btn btn-success" style="margin-left: 40px;" href="index.php/Cliente/muda_status?cod='+item.idCliente+'&status='+sta+'">Alterar Status</a>')
+						$('<a class="btn btn-success" style="margin-left: 40px;" href="index.php/Cliente/muda_status?cod='+item.idCliente+'&status='+sta+'">Alterar Status</a>'),
+						$('<a class="btn btn-primary" style="margin-left: 40px;" href="'+base+'?user='+item.Login_Cli+'">Ver Obras</a>')
 				).appendTo('#corpo');
 			});
 		}

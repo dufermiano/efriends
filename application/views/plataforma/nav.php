@@ -10,7 +10,7 @@
         <?php 
         	$user = $this->session->userdata('user');
         	$tipo = $this->session->userdata('tipo'); 	
-        	if($user == null && $tipo != 'cliente'):
+        	if($user == null || $tipo != 'cliente'):
         	?>
         		<li><a href="<?php echo base_url('cadastro_cli')?>">Cadastra-se</a></li>
         		<li><a href="<?php echo base_url('login')?>">Login</a></li>

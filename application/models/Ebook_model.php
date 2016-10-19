@@ -28,7 +28,7 @@ class Ebook_model extends CI_Model{
 
 	}
 	
-	public function get_catalogo_cli(){
+	public function get_catalogo_cli($login){
 		
 		$sql = "select ebook.idEbook as idEbook, 
 				ebook.capa as Capa, 
@@ -37,7 +37,7 @@ class Ebook_model extends CI_Model{
 				from log_cliente_ebook
 				inner join ebook on ebook.idEbook = log_cliente_ebook.Ebook_idEbook
 				inner join cliente on cliente.idCliente = log_cliente_ebook.Cliente_idCliente
-				where cliente.sessao = true;";
+				where cliente.login_cli = '$login'";
 		
 		$query = $this->db->query($sql);
 		return $query->result();

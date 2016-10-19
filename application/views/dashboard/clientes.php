@@ -30,6 +30,7 @@
 										<th>Nome do Cliente</th>
 										<th>Status</th>
 										<th></th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody id="corpo">

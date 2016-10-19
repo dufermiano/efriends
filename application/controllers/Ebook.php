@@ -170,11 +170,18 @@ else {
 		$sessao = $this->session->userdata ( 'tipo' );
 		
 		if ($sessao == 'cliente') {
-			$dados_ebook ['ebook'] = $this->ebook->get_catalogo_cli ();
+			$login = $this->session->userdata ( 'user' );
+			$dados_ebook ['ebook'] = $this->ebook->get_catalogo_cli ($login);
 		} else {
 			$dados_ebook ['ebook'] = $this->ebook->get_catalogo_geral ();
 		}
 		
+		$this->load->view ( 'dashboard/catalogo-obra', $dados_ebook );
+	}
+	
+	public function obra_cli(){
+		$login =  $this->input->get ( 'user' );
+		$dados_ebook ['ebook'] = $this->ebook->get_catalogo_cli ($login);
 		$this->load->view ( 'dashboard/catalogo-obra', $dados_ebook );
 	}
 	
@@ -184,6 +191,14 @@ else {
 		
 		$this->load->view ( 'dashboard/gerencia-ebook', $dados_ebook );
 	}
+	
+	public function status_ebook() {
+		$dados_ebook ['ebook'] = $this->ebook->get_ebook ( $this->input->get ( 'cod' ) );
+	
+		$this->load->view ( 'dashboard/status-ebook', $dados_ebook );
+	}
+	
+	
 	
 	// carrega o livro selecionado ao clicar no botão 'sobre'
 	public function sobre_livro() {

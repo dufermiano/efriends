@@ -56,7 +56,6 @@
                         </li>
                         <li><a href="<?php echo base_url('inicio_dash')?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
                         <li><a href="<?php echo base_url('relatorios')?>"><i class="fa fa-bar-chart fa-fw"></i> Relatorios</a></li>
-                        <li><a href="<?php echo base_url('catalogo_obra')?>"><i class="fa fa-edit fa-fw"></i> Catalogo de obras</a></li>
                         <li><a href="<?php echo base_url('clientes')?>"><i class="fa fa-edit fa-fw"></i> Lista de Clientes</a></li>
              
                     </ul>

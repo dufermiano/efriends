@@ -71,8 +71,10 @@ $route['cadastro_obra'] = 'Ebook'; //direciona para obra-cadastro.php
 $route['perfil'] = 'Admin/perfil'; //direciona para perfil.php
 $route['gerencia_ebook'] = 'Ebook/gerencia_ebook'; //direciona para gerencia-ebook.php
 $route['clientes'] = 'Cliente/clientes';//direciona para clientes.php
-$route['troca_senha'] = 'Dashboard/troca_senha';//direciona para troca_senha_adm.php
+$route['troca_senha'] = 'Dashboard/troca_senha';//direciona para troca_senha.php
 $route['logout'] = "Cliente/logout";//chama função de logout
+$route['status_ebook'] = "Ebook/status_ebook";//direciona para catalogo-admin.php 
+$route['obra_cli'] = "Ebook/obra_cli";//direciona para catalogo-admin.php
 //rotas da plataforma
 
 $route['sobre'] = 'Ebook/sobre_livro';//direciona para sobre.php da plataforma
