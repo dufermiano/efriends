@@ -15,6 +15,9 @@ class Admin extends CI_Controller {
 	public function troca_senha(){
 		$this->load->view('dashboard/troca_senha_adm');
 	}
+	public function novo_admin(){
+		$this->load->view('dashboard/novo-admin');
+	}
 		
 	public function login(){
 		$login = $this->input->post ('login', TRUE);
@@ -53,6 +56,44 @@ class Admin extends CI_Controller {
 				$this->session->set_userdata("user", $dados['login']);
 				redirect ( 'perfil', 'refresh' );
 			}
+	}
+	
+	public function insere_admin(){
+			
+		$admin = $this->input->post ();
+		
+		$login = $admin ['login'];
+	
+		$r = $this->admin->checa_login($login);
+		if($r == false){
+			set_msg ( "<p>Login já existente no sistema, favor inserir outro</p>" );
+			redirect ( 'novo_admin', 'refresh' );
+			return false;
+		}
+			
+		$post_password1 = md5($this->input->post('senha', TRUE));
+		$post_password2 = md5($this->input->post('senha2', TRUE));
+	
+		$dados_insert ['nome'] = $admin ['nome'];
+		$dados_insert ['email'] = $admin ['email'];
+		$dados_insert ['telefone'] = $admin ['tel'];
+		$dados_insert ['login'] = $admin ['login'];
+		if($post_password1 != $post_password2){
+				
+			set_msg ( "<p>Senhas devem coincidir</p>" );
+			redirect ( 'novo_admin', 'refresh' );
+		}
+		else{
+			$dados_insert ['senha'] = $post_password1;
+		
+			$result = $this->admin->insert_admin ( $dados_insert );
+				
+		}
+		if ($result) {
+			set_msg ( "<p>Inserção feita com sucesso</p>" );
+			redirect ( 'novo_admin', 'refresh' );
+		}
+	
 	}
 	
 }

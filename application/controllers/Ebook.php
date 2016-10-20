@@ -208,6 +208,31 @@ else {
 		$this->load->view ( 'plataforma/sobre', $dados_ebook );
 		
 	}
+	
+	public function muda_status(){
+		$idcli =  $this->input->get ( 'cod' );
+		$status =  $this->input->post ( 'status' );
+		
+	
+		if($status == "Ativo"):
+		$dados['status'] = false;
+		else:
+		$dados['status'] = true;
+		endif;
+	
+		$dados['id'] = $idcli;
+	
+		$result = $this->ebook->muda_status($dados);
+		if($result){
+			set_msg ( "<p>Mudança de status do livro realizada</p>" );
+			redirect ( 'clientes', 'refresh' );
+		}
+	}
+	
+	
+	
+	
+	
 }
 
 

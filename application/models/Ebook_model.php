@@ -114,5 +114,14 @@ class Ebook_model extends CI_Model{
 		return $query->result();
 	}
 		
+	public function muda_status($dados){
+	
+		$this-> db -> set('Status_Ebook',$dados['status']);
+		$this-> db -> where('idEbook', $dados['id']);
+		$this-> db -> update('Ebook');
+		return $this-> db -> affected_rows();
+	
+	}
+	
 
 }

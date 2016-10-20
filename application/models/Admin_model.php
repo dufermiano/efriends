@@ -9,6 +9,41 @@ class Admin_model extends CI_Model{
 		
 	}
 	
+	public function checa_login($login){
+	
+		$this-> db -> select ('idAdministrador');
+		$this-> db -> from ('Administrador');
+		$this-> db -> where('Login_Admin', $login );
+		$this-> db -> limit(1);
+	
+		$query = $this-> db -> get();
+	
+		if($query->num_rows() != 0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public function insert_admin($dados){
+	
+		$dados_admin = array(
+				'nome_admin' => $dados['nome'],
+				'email_admin' => $dados['email'],
+				'telefone_admin' => $dados['telefone'],
+				'status_admin' => true,
+				'login_admin' => $dados['login'],
+				'senha_admin' => $dados['senha']
+		);
+			
+		$this->db->set('data_cadastro', 'NOW()', FALSE);
+		$this->db->insert('administrador', $dados_admin);
+	
+		return $this->db->insert_id();
+	}
+	
+	
 	public function login($login, $senha){
 		
 		$sql = "select idAdministrador, Login_Admin from Administrador Where Login_Admin = '$login' AND Senha_Admin = '$senha' AND Status_Admin = true;";

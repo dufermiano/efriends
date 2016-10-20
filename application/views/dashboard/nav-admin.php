@@ -35,6 +35,8 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="<?php echo base_url('perfil')?>"><i class="fa fa-user fa-fw"></i> Editar Perfil</a>
                         </li>
+                        <li><a href="<?php echo base_url('novo_admin')?>"><i class="fa fa-user fa-fw"></i> Cadastrar novo administrador</a>
+                        </li>
                         <li><a href="<?php echo base_url('troca_senha')?>"><i class="fa fa-user fa-fw"></i> Trocar Senha</a>
                         </li>
                         <li class="divider"></li>
@@ -57,7 +59,6 @@
                         <li><a href="<?php echo base_url('inicio_dash')?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
                         <li><a href="<?php echo base_url('relatorios')?>"><i class="fa fa-bar-chart fa-fw"></i> Relatorios</a></li>
                         <li><a href="<?php echo base_url('clientes')?>"><i class="fa fa-edit fa-fw"></i> Lista de Clientes</a></li>
-             
                     </ul>
                 </div>
             </div>

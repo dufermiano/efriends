@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS efriends;
+﻿DROP DATABASE IF EXISTS efriends;
 CREATE DATABASE efriends;
 USE efriends;
 
@@ -10,7 +10,7 @@ CREATE TABLE Administrador (
   Telefone_Admin INTEGER NOT NULL,
   Email_Admin VARCHAR(30) NOT NULL,
   Status_Admin BOOL NOT NULL DEFAULT TRUE,
-  Sessao BOOL DEFAULT TRUE,
+  Sessao BOOL DEFAULT FALSE,
   Data_Cadastro DATETIME NOT NULL
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE Cliente (
   Senha_Cli VARCHAR(100) NOT NULL,
   Status_Cli BOOL NOT NULL DEFAULT TRUE,
   Data_Cadastro DATETIME NOT NULL, 
-  Sessao BOOL DEFAULT TRUE
+  Sessao BOOL DEFAULT FALSE
 );
 
 CREATE TABLE Ebook (
