@@ -4,6 +4,7 @@ upload_max_filesize
 post_max_size
 
 
-Próximos passos: Fazer a orientação a objetos do sistema
-Criar DER
-Testar integração Newsletter
+Próximos passos: 
+- Refazer triggers, passar para o PHP
+- Fazer fluxo de venda com PagSeguro
+- Relatórios
