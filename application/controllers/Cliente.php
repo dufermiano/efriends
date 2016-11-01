@@ -114,12 +114,11 @@ class Cliente extends CI_Controller {
 			redirect ( 'login' );
 		} else {
 			foreach ($result as $row){
-				$this->session->set_userdata("user", $row->Login_Cli);
 				
+				$this->session->set_userdata("user", $row->Login_Cli);
 				$this->session->set_userdata("tipo", 'cliente');
 			
 			}
-			$this->cliente->ativa_sessao();
 			redirect ( 'plataforma', 'refresh' );
 			
 		}
@@ -127,7 +126,6 @@ class Cliente extends CI_Controller {
 	
 	public function logout(){
 	
-		$this->cliente->desativa_sessao();
 		$this->session->unset_userdata('user');
 		$this->session->unset_userdata('tipo');
 		redirect("plataforma", "refresh");
@@ -156,6 +154,7 @@ class Cliente extends CI_Controller {
 		$result = $this->cliente->update_cliente($dados_update);
 			
 		if ($result) {
+			
 			set_msg ( "<p>Alteração feita com sucesso</p>" );
 			redirect ( 'perfil_cli', 'refresh' );
 		}

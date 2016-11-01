@@ -8,6 +8,7 @@ class Ebook extends CI_Controller {
 		parent::__construct ();
 		$this->load->helper ( 'url' );
 		$this->load->model ( 'Ebook_model', 'ebook' );
+		$this->load->model ( 'Cliente_model', 'cli' );
 		$this->load->library ( 'upload', upload_capa () );
 	}
 	
@@ -44,6 +45,13 @@ class Ebook extends CI_Controller {
 		
 		$result = $this->ebook->insert_ebook ( $dados_insert );
 		if ($result) {
+			
+			$idEbook = $result;
+			
+			$idCliente = $this->cli->getIdCliente($this->session->userdata('user'));
+				
+			echo $this->cli-log_cli_ebook($idCliente, $idEbook, "Publicação");
+			
 			set_msg ( "<p>Inserção feita com sucesso</p>" );
 			redirect ( 'ebook', 'refresh' );
 		}
@@ -147,6 +155,7 @@ else {
 		}
 		
 		if ($result) {
+			
 			set_msg ( "<p>Alteração feita com sucesso</p>" );
 			redirect ( 'catalogo_obra', 'refresh' );
 		}

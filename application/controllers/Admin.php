@@ -33,14 +33,12 @@ class Admin extends CI_Controller {
 				$this->session->set_userdata("user", $row->Login_Admin);
 				$this->session->set_userdata("tipo", 'admin');
 			}
-			$this->admin->ativa_sessao();
 			redirect ( 'inicio_dash', 'refresh' );
 		}
 	}
 	
 	public function logout(){
 		
-		$this->admin->desativa_sessao();
 		$this->session->unset_userdata('user');
 		$this->session->unset_userdata('tipo');
 		redirect("admin");

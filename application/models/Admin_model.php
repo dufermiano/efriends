@@ -9,6 +9,21 @@ class Admin_model extends CI_Model{
 		
 	}
 	
+	
+	
+	
+	
+	public function getIdAdmin(){
+		$this-> db -> select ('idAdministrador');
+		$this-> db -> from ('Administrador');
+		$this-> db -> where('Login_Admin', $this->session->userdata('user') );
+		$this-> db -> limit(1);
+	
+		$query = $this-> db -> get();
+	
+		return $query->result();
+	}
+	
 	public function checa_login($login){
 	
 		$this-> db -> select ('idAdministrador');
@@ -68,18 +83,6 @@ class Admin_model extends CI_Model{
 		$query = $this-> db -> get();
 		
 		return $query->result();
-	}
-	
-	public function ativa_sessao(){
-		$this-> db -> set('Sessao', true);
-		$this-> db -> where('Login_Admin', $this->session->userdata('user'));
-		$this-> db -> update('Administrador');
-	}
-	
-	public function desativa_sessao(){
-		$this-> db -> set('Sessao', false);
-		$this-> db -> where('Login_Admin', $this->session->userdata('user'));
-		$this-> db -> update('Administrador');
 	}
 	
 	public function update_admin($admin){

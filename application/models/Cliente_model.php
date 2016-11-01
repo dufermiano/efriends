@@ -9,6 +9,34 @@ class Cliente_model extends CI_Model{
 		$this->load->helper('security');
 	}
 	
+	
+	public function getIdCliente($login){
+		$this-> db -> select ('idCliente');
+		$this-> db -> from ('Cliente');
+		$this-> db -> where('Login_Cli', $login );
+		$this-> db -> limit(1);
+		
+		$query = $this-> db -> get();
+		
+		return $query->result();
+	}
+	
+	public function log_cli_ebook($idCli, $idEbook, $acao){
+		
+		$sql = "CALL Log_Cliente_Ebook($idCli, $idEbook, '$acao');";
+		
+		$query = $this->db->query($sql);
+		
+		if($query -> num_rows() == 1){
+			return "foi";
+		}
+		else{
+			return "não foi";
+		}
+		
+		
+	}
+	
 	public function insert_cliente($dados){
 
 		$dados_cliente = array(
@@ -87,19 +115,6 @@ class Cliente_model extends CI_Model{
 	
 		return $query->result();
 	}
-	
-	public function ativa_sessao(){
-		$this-> db -> set('Sessao', true);
-		$this-> db -> where('Login_Cli', $this->session->userdata('user'));
-		$this-> db -> update('Cliente');
-	}
-	
-	public function desativa_sessao(){
-		$this-> db -> set('Sessao', false);
-		$this-> db -> where('Login_Cli', $this->session->userdata('user'));
-		$this-> db -> update('Cliente');
-	}
-	
 	
 	public function update_cliente($cli){
 	
