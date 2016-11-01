@@ -114,10 +114,20 @@ class Cliente extends CI_Controller {
 			redirect ( 'login' );
 		} else {
 			foreach ($result as $row){
-				$this->session->set_userdata("user", $row->Login_Cli);
-				$this->session->set_userdata("tipo", 'cliente');
+				
+				$dados_sessao = array(
+					"logado" => true,
+					"user" => $row->Login_Cli,
+					"tipo" => 'cliente'
+						
+				);
+				
+				$this->session->set_userdata("data", $dados_sessao);
+			
 			}
 			$this->cliente->ativa_sessao();
+			$sessao = $this->session->userdata('data');
+			echo "<script>alert('$sessao');</script>";
 			redirect ( 'plataforma', 'refresh' );
 			
 		}
