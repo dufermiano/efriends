@@ -21,6 +21,10 @@ class Plataforma extends CI_Controller {
 		
 	}
 	
+	public function esqueci_senha(){
+		$this->load->view('plataforma/esqueci_senha');
+	}
+	
 	public function sobre(){
 		$this->load->view('plataforma/sobre');
 	}

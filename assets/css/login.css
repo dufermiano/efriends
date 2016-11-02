@@ -1,0 +1,84 @@
+.desktop section{height: 600px;}
+.desktop article {width: 30%; /*background: red;*/}
+.desktop article h3{padding: 2% 0 1% 1%;}
+.desktop article form{margin-top: 150px; box-sizing: border-box; padding: 10px; border-radius: 10px; border: 1px solid #bdc3c7;}
+.desktop article input,
+.desktop article select{
+
+  width: 100%;
+  height: 40px;
+  margin: 1.5% 0;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+.desktop article select{background: #fff;}
+
+.desktop input[type="text"],
+.desktop input[type="password"]{
+
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  padding-left: 15px;
+}
+
+.desktop input:focus{border: 2px solid #2a9dcc;}
+.desktop button{
+
+  width: 150px;
+  height: 40px;
+
+  border: none;
+  border-radius: 4px;
+  background: #2a9dcc;
+  color: #fff;
+  font-size: 15px;
+  margin: 10% 0 0 31%;
+}
+
+.desktop input[type="checkbox"]{width: 20px; position: relative; top: 15px;}
+.desktop label{font-family: Arial, sans-serif;}
+
+.desktop .esqueci-senha{
+
+  float: right;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #3b3b3b;
+}
+/*==== Mobile ====*/
+.mobile article {width: 100%; margin-top: 50px;}
+.mobile article h3{font-size: 50px; padding-top: 100px;}
+.mobile article input,
+.mobile article select{
+
+  width: 100%;
+  height: 80px;
+  margin-top: 5%;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 40px;
+}
+
+.mobile article select{background: #fff;}
+
+.mobile input[type="text"],
+.mobile input[type="password"]{
+
+  font-family: Arial, sans-serif;
+  font-size: 35px;
+  padding-left: 15px;
+}
+
+.mobile input:focus{border: 2px solid #2a9dcc;}
+.mobile button{
+
+  width: 80%;
+  height: 80px;
+  border: none;
+  border-radius: 4px;
+  background: #2a9dcc;
+  color: #fff;
+  font-size: 45px;
+  margin: 5% 10%;
+}

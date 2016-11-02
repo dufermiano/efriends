@@ -23,11 +23,14 @@ class Cliente_model extends CI_Model{
 	
 	public function log_cli_ebook($idCli, $idEbook, $acao){
 		
-		$sql = "CALL Log_Cliente_Ebook($idCli, $idEbook, '$acao');";
+		//$sql = "CALL Log_Cliente_Ebook($idCli, $idEbook, '$acao')";
 		
-		$query = $this->db->query($sql);
 		
-		if($query -> num_rows() == 1){
+		//$query = $this->db->query($sql);
+		
+		$query = $this->db->call_function('Log_Cliente_Ebook', $idCli, $idEbook, $acao);
+		
+		if($query -> result_id ){
 			return "foi";
 		}
 		else{

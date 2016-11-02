@@ -84,3 +84,4 @@ $route['categorias'] = 'Plataforma/categorias';
 $route['todos'] = 'Plataforma/todos';
 $route['login'] = 'Plataforma/login';
 $route['perfil_cli'] = 'Cliente/perfil'; //direciona para perfil_cli.php, pagina do perfil do cliente
+$route['esqueci_senha'] = 'Plataforma/esqueci_senha';

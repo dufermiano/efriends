@@ -43,7 +43,8 @@ function upload_s3($bucket, $object){
 		// cria o objeto do cliente, necessita passar as credenciais da AWS
 		$clientS3 = S3Client::factory(array(
 				// definição das credenciais AWS para S3
-				'key'    => null,
+				//mudar ao fazer upload pro bitbuck para NULL
+				'key'    => null, 
 				'secret' => null
 		));
 			
