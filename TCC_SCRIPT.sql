@@ -10,8 +10,9 @@ CREATE TABLE Administrador (
   Telefone_Admin INTEGER NOT NULL,
   Email_Admin VARCHAR(30) NOT NULL,
   Status_Admin BOOL NOT NULL DEFAULT TRUE,
-  Sessao BOOL DEFAULT FALSE,
-  Data_Cadastro DATETIME NOT NULL
+  Data_Cadastro DATETIME NOT NULL,
+  Pergunta VARCHAR(100) NOT NULL, 
+  Resposta VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Cliente (
@@ -24,8 +25,9 @@ CREATE TABLE Cliente (
   Login_Cli VARCHAR(100) UNIQUE NOT NULL,
   Senha_Cli VARCHAR(100) NOT NULL,
   Status_Cli BOOL NOT NULL DEFAULT TRUE,
-  Data_Cadastro DATETIME NOT NULL, 
-  Sessao BOOL DEFAULT FALSE
+  Data_Cadastro DATETIME NOT NULL,
+  Pergunta VARCHAR(100) NOT NULL, 
+  Resposta VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Ebook (
