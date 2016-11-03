@@ -2,6 +2,16 @@
 CREATE DATABASE efriends;
 USE efriends;
 
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+        `id` varchar(128) NOT NULL,
+        `ip_address` varchar(45) NOT NULL,
+        `timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
+        `data` blob NOT NULL,
+        KEY `ci_sessions_timestamp` (`timestamp`)
+);
+
+ALTER TABLE ci_sessions ADD PRIMARY KEY (id);
+
 CREATE TABLE Administrador (
   idAdministrador INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Login_Admin VARCHAR(100) UNIQUE NOT NULL,
@@ -42,6 +52,16 @@ CREATE TABLE Ebook (
   Data_Cadastro DATETIME NOT NULL, 
   Obra VARCHAR (255) NOT NULL
 );
+
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE Log_Administrador_Cliente (
   Administrador_idAdministrador INTEGER NOT NULL,
@@ -93,16 +113,15 @@ CREATE TABLE Historico_Cliente (
   ON DELETE CASCADE
 );
 
-#trigger que audita data de uma PUBLICAÇÃO por parte de um usuário
-DELIMITER $$
-CREATE TRIGGER tg_cliente_ebook_publicacao AFTER INSERT
-ON Ebook
-FOR EACH ROW
-BEGIN
-INSERT INTO log_cliente_ebook VALUES
-((SELECT idCliente FROM Cliente WHERE Sessao = true), NEW.idEbook, 'Publicação', NOW());
-END $$
-DELIMITER ;
+
+
+
+
+
+
+
+
+
 
 
 #trigger que faz a auditoria de alterações de dados do usuário na tabela HISTORICO_CLIENTE e LOG_ADMINISTRADOR_CLIENTE
@@ -111,11 +130,6 @@ CREATE TRIGGER tg_audita_cli AFTER UPDATE
 ON Cliente
 FOR EACH ROW
 BEGIN
-
-   IF (New.Status_Cli <> Old.Status_Cli) THEN
-	INSERT INTO LOG_ADMINISTRADOR_CLIENTE VALUES
-	((SELECT idAdministrador FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.idCliente , 'ALTERAÇÃO NO STATUS DO CLIENTE', OLD.Status_Cli, NEW.Status_Cli, NOW());
-   END IF;
 
  IF (New.Nome_Cli <> Old.Nome_Cli) THEN 
 	INSERT INTO HISTORICO_CLIENTE VALUES
@@ -145,53 +159,4 @@ END IF;
 END $$
 DELIMITER ;
 
-#TRIGGER QUE AUDITA O EBOOK ALTERADO PELO ADMIN
 
-DELIMITER $$
-CREATE TRIGGER tg_audita_ebook_admin AFTER UPDATE 
-ON Ebook
-FOR EACH ROW
-BEGIN
-
-SET @id := (SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE);
-
-IF(@id <> 0) THEN
-
- IF (New.Capa <> Old.Capa) THEN 
-	INSERT INTO LOG_ADMINISTRADOR_EBOOK VALUES
-	((SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.IDEBOOK, 'Alteração da Capa', 'Capa', OLD.Capa, NEW.Capa, NOW());
-END IF;
-
- IF (New.Titulo_Ebook <> Old.Titulo_Ebook) THEN 
-	INSERT INTO LOG_ADMINISTRADOR_EBOOK VALUES
-	((SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.IDEBOOK, 'Alteração do Titulo', 'Titulo_Ebook', OLD.Titulo_Ebook, NEW.Titulo_Ebook, NOW());
-END IF;
-
- IF (New.Descricao_Ebook <> Old.Descricao_Ebook) THEN
-	INSERT INTO LOG_ADMINISTRADOR_EBOOK VALUES
-	((SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.IDEBOOK, 'Alteração da Descricao', 'Descricao_Ebook', OLD.Descricao_Ebook, NEW.Descricao_Ebook, NOW());
-END IF;
-
- IF (New.Autor_Ebook <> Old.Autor_Ebook) THEN
-	INSERT INTO LOG_ADMINISTRADOR_EBOOK VALUES
-	((SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.IDEBOOK, 'ALTERAÇÃO NO AUTOR', 'Autor_Ebook', OLD.Autor_Ebook, NEW.Autor_Ebook, NOW());
-END IF;
-
- IF (New.Preco_Ebook <> Old.Preco_Ebook) THEN
-	INSERT INTO LOG_ADMINISTRADOR_EBOOK VALUES
-	((SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.IDEBOOK, 'ALTERAÇÃO NO PRECO', 'Preco_Ebook', OLD.Preco_Ebook, NEW.Preco_Ebook, NOW());
-END IF;
-
- IF (New.Status_Ebook <> Old.Status_Ebook) THEN
-	INSERT INTO LOG_ADMINISTRADOR_EBOOK VALUES
-	((SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.IDEBOOK, 'ALTERAÇÃO NO STATUS', 'Status_Ebook', OLD.Status_Ebook, NEW.Status_Ebook, NOW());
-END IF;
-
- IF (New.Obra <> Old.Obra) THEN
-	INSERT INTO LOG_ADMINISTRADOR_EBOOK VALUES
-	((SELECT IDADMINISTRADOR FROM ADMINISTRADOR WHERE SESSAO = TRUE), NEW.IDEBOOK, 'ALTERAÇÃO NA Obra', 'Obra', OLD.Obra, NEW.Obra, NOW());
-END IF;
-END IF;
-
-END $$
-DELIMITER ;
