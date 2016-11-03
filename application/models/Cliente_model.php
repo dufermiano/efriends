@@ -177,7 +177,13 @@ class Cliente_model extends CI_Model{
 		
 		$this-> db -> set('Status_Cli',$dados['status']);
 		$this-> db -> where('idCliente', $dados['id']);
-		$this-> db -> update('Cliente');
+		
+		if( ! $this-> db -> update('Cliente')){
+			var_dump ($this->db->error());
+			return;
+		}
+		
+		
 		return $this-> db -> affected_rows();
 		
 	}

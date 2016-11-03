@@ -121,7 +121,11 @@ class Ebook_model extends CI_Model{
 	
 		$this-> db -> set('Status_Ebook',$dados['status']);
 		$this-> db -> where('idEbook', $dados['id']);
-		$this-> db -> update('Ebook');
+		if( ! $this-> db -> update('Ebook')){
+			var_dump ($this->db->error());
+			return;
+		}
+		
 		return $this-> db -> affected_rows();
 	
 	}

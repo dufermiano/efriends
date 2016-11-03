@@ -5,6 +5,7 @@ class Cliente extends CI_Controller {
 		parent::__construct ();
 		$this->load->helper ( 'url' );
 		$this->load->model('cliente_model', 'cliente');
+		$this->load->model('admin_model', 'admin');
 	}
 	
 	public function clientes(){
@@ -36,14 +37,26 @@ class Cliente extends CI_Controller {
 		
 		if($status == "Ativo"):
 			$dados['status'] = false;
+			$acao = "Desativou";
 		else:
 			$dados['status'] = true;
+			$acao = "Ativou";
 		endif;
 		
 		$dados['id'] = $idcli;
 		
 		$result = $this->cliente->muda_status($dados);
 		if($result){
+			
+			$id = $this->admin->getIdAdmin($this->session->userdata('user'));
+			
+			foreach ($id as $row){
+				$idAdmin = $row->idAdministrador; //coloca na variável
+			}
+			
+			$this->admin->log_admin_cliente($idAdmin, $idcli, $acao);//registra log de cliente e ebook para publicação
+			
+			
 			set_msg ( "<p>Mudança de status realizada</p>" );			
 			redirect ( 'clientes', 'refresh' );
 		}

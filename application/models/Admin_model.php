@@ -9,14 +9,45 @@ class Admin_model extends CI_Model{
 		
 	}
 	
+
+	public function log_admin_ebook($idAdmin, $idEbook, $acao){
 	
+		$dados = array(
+				'Administrador_idAdministrador' => $idAdmin,
+				'Ebook_idEbook' => $idEbook,
+				'Acao_Admin_Ebook' => $acao
+		);
 	
+		$this->db->set('Data_Acao', 'NOW()', FALSE);
 	
+		if( ! $this->db->insert('log_administrador_ebook', $dados)){
+			var_dump( $this->db->error());
+			return;
+		}
 	
-	public function getIdAdmin(){
+	}
+	
+	public function log_admin_cliente($idAdmin, $idCliente, $acao){
+	
+		$dados = array(
+				'Administrador_idAdministrador' => $idAdmin,
+				'Cliente_idCliente' => $idCliente,
+				'Acao_Admin_Cli' => $acao
+		);
+	
+		$this->db->set('Data_Acao', 'NOW()', FALSE);
+	
+		if( ! $this->db->insert('log_administrador_cliente', $dados)){
+			var_dump( $this->db->error());
+			return;
+		}
+	
+	}
+	
+	public function getIdAdmin($login){
 		$this-> db -> select ('idAdministrador');
 		$this-> db -> from ('Administrador');
-		$this-> db -> where('Login_Admin', $this->session->userdata('user') );
+		$this-> db -> where('Login_Admin', $login );
 		$this-> db -> limit(1);
 	
 		$query = $this-> db -> get();

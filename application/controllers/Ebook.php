@@ -9,6 +9,7 @@ class Ebook extends CI_Controller {
 		$this->load->helper ( 'url' );
 		$this->load->model ( 'Ebook_model', 'ebook' );
 		$this->load->model ( 'Cliente_model', 'cli' );
+		$this->load->model ( 'Admin_model', 'admin' );
 		$this->load->library ( 'upload', upload_capa () );
 	}
 	
@@ -163,19 +164,6 @@ else {
 		}
 	}
 	
-	// método para exclusão do ebook ainda é preciso verificar a regra de negócio para exclusão
-	public function exclui_ebook() {
-		$idEbook = $this->input->get ( 'cod' );
-		
-		$result = $this->ebook->delete_ebook ( $idEbook );
-		
-		if ($result) {
-			set_msg ( "<p>Exclusão feita com sucesso</p>" );
-			
-			redirect ( 'catalogo_obra', 'refresh' );
-		}
-	}
-	
 	// carrega o catalogo de obras do banco de dados
 	public function catalogo_obra() {
 		$sessao = $this->session->userdata ( 'tipo' );
@@ -221,20 +209,32 @@ else {
 	}
 	
 	public function muda_status(){
-		$idcli =  $this->input->get ( 'cod' );
+		$idebook =  $this->input->get ( 'cod' );
 		$status =  $this->input->post ( 'status' );
 		
 	
 		if($status == "Ativo"):
 		$dados['status'] = false;
+		$acao = "Desativou";
 		else:
 		$dados['status'] = true;
+		$acao = "Ativou";
 		endif;
 	
-		$dados['id'] = $idcli;
+		$dados['id'] = $idebook;
 	
 		$result = $this->ebook->muda_status($dados);
 		if($result){
+			
+			$id = $this->admin->getIdAdmin($this->session->userdata('user'));
+				
+			foreach ($id as $row){
+				$idAdmin = $row->idAdministrador; //coloca na variável
+			}
+				
+			$this->admin->log_admin_ebook($idAdmin, $idebook, $acao);//registra log de cliente e ebook para publicação
+			
+			
 			set_msg ( "<p>Mudança de status do livro realizada</p>" );
 			redirect ( 'clientes', 'refresh' );
 		}

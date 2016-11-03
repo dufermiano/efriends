@@ -67,8 +67,6 @@ CREATE TABLE Log_Administrador_Cliente (
   Administrador_idAdministrador INTEGER NOT NULL,
   Cliente_idCliente INTEGER NOT NULL,
   Acao_Admin_Cli VARCHAR (50) NOT NULL,
-  Valor_Antigo VARCHAR (255) NOT NULL, 
-  Valor_Novo VARCHAR (255) NOT NULL,
   Data_Acao DATETIME NOT NULL,
   FOREIGN KEY (Administrador_idAdministrador) REFERENCES Administrador(idAdministrador), 
   FOREIGN KEY (Cliente_idCliente) REFERENCES Cliente(idCliente)
@@ -80,9 +78,6 @@ CREATE TABLE Log_Administrador_Ebook (
   Administrador_idAdministrador INTEGER NOT NULL,
   Ebook_idEbook INTEGER NOT NULL,
   Acao_Admin_Ebook VARCHAR(50) NOT NULL,
-  Campo_Alterado VARCHAR (100) NOT NULL,
-  Valor_Antigo VARCHAR (255) NOT NULL, 
-  Valor_Novo VARCHAR (255) NOT NULL,
   Data_Acao DATETIME NOT NULL,
   FOREIGN KEY (Administrador_idAdministrador) REFERENCES Administrador(idAdministrador), 
   FOREIGN KEY (Ebook_idEbook) REFERENCES Ebook(idEbook)
@@ -112,17 +107,6 @@ CREATE TABLE Historico_Cliente (
   ON UPDATE CASCADE
   ON DELETE CASCADE
 );
-
-
-
-
-
-
-
-
-
-
-
 
 #trigger que faz a auditoria de alterações de dados do usuário na tabela HISTORICO_CLIENTE e LOG_ADMINISTRADOR_CLIENTE
 DELIMITER $$
