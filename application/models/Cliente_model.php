@@ -21,10 +21,21 @@ class Cliente_model extends CI_Model{
 		return $query->result();
 	}
 	
-	public function log_cli_ebook($idCli, $idEbook, $acao){
+	public function log_cli_ebook($idCli, $idEbook, $acao){	
 		
-		$sql = "CALL Log_Cliente_Ebook(".$idCli.", ".$idEbook.",'".$acao."')";
-		$query = $this->db->query($sql);
+		$dados = array(
+			'Cliente_idCliente' => $idCli,
+			'Ebook_idEbook' => $idEbook,
+			'Status_Cli_Ebook' => $acao	
+		);
+		
+		$this->db->set('Data_Acao', 'NOW()', FALSE);
+		
+		if( ! $this->db->insert('log_cliente_ebook', $dados)){
+			var_dump( $this->db->error());
+			return;
+		}
+		
 	}
 	
 	public function insert_cliente($dados){
@@ -116,7 +127,12 @@ class Cliente_model extends CI_Model{
 		$this->db->set('Newsletter', $cli['newsletter']);
 	
 		$this-> db -> where('Login_Cli', $this->session->userdata('user'));
-		$this-> db ->update('Cliente');
+		
+		if( ! $this-> db ->update('Cliente')){
+			echo $this->db->error();
+			return;
+		}
+		
 		return $this->db->affected_rows();
 	}
 	

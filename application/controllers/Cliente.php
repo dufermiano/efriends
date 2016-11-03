@@ -155,6 +155,7 @@ class Cliente extends CI_Controller {
 			
 		if ($result) {
 			
+			
 			set_msg ( "<p>Alteração feita com sucesso</p>" );
 			redirect ( 'perfil_cli', 'refresh' );
 		}
