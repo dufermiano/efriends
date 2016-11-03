@@ -22,7 +22,10 @@ class Ebook_model extends CI_Model{
          		);
 		 
          $this->db->set('data_cadastro', 'NOW()', FALSE);
-         $this->db->insert('ebook', $dados_ebook); 
+        if( ! $this->db->insert('ebook', $dados_ebook)){
+        	echo $this->db->error();
+        	return;
+        } 
          
 		 return $this->db->insert_id(); 
 

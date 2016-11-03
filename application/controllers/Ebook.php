@@ -46,11 +46,13 @@ class Ebook extends CI_Controller {
 		$result = $this->ebook->insert_ebook ( $dados_insert );
 		if ($result) {
 			
-			//$idEbook = $result;
-			
-			//$idCliente = $this->cli->getIdCliente($this->session->userdata('user'));
-				
-		//	echo $this->cli-log_cli_ebook($idCliente, $idEbook, "Publicação");
+			$idEbook = $result;		//pega id do livro inserido	
+			$id = $this->cli->getIdCliente($this->session->userdata('user')); //id do cliente logado
+			foreach ($id as $row){
+				$idCliente = $row->idCliente; //coloca na variável
+			}
+
+			$this->cli->log_cli_ebook($idCliente, $idEbook, "Publicação");//registra log de cliente e ebook para publicação
 			
 			set_msg ( "<p>Inserção feita com sucesso</p>" );
 			redirect ( 'ebook', 'refresh' );
