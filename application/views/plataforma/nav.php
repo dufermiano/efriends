@@ -8,9 +8,9 @@
         <li><a href="<?php echo base_url('todos')?>">Todos</a></li>
         <li><a href="<?php echo base_url('categorias')?>">Categorias</a></li>
            <?php 
-        	$user = $this->session->userdata('user');
-        	$tipo = $this->session->userdata('tipo'); 	
-        	if($user == null || $tipo != 'cliente'):
+        	$logado = $this->session->userdata('logado');	
+        	$tipo = $this->session->userdata('tipo');
+        	if($logado == null || $tipo != 'cliente'):
         	?>
         		<li><a href="<?php echo base_url('cadastro_cli')?>">Cadastro</a></li>
         		<li><a href="<?php echo base_url('login')?>">Login</a></li>

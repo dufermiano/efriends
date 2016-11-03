@@ -3,7 +3,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Admin extends CI_Controller {
 	function __construct() {
 		parent::__construct ();
-		$this->load->helper ( 'url' );
+		$this->load->helper ( 'url');
 		$this->load->model ( 'Admin_model', 'admin' );
 		$this->load->library ( 'session' );
 	}
@@ -30,18 +30,27 @@ class Admin extends CI_Controller {
 			redirect ( 'admin' );
 		} else {
 			foreach ($result as $row){
-				$this->session->set_userdata("user", $row->Login_Admin);
-				$this->session->set_userdata("tipo", 'admin');
+				$login_admin = $row->Login_Admin;
 			}
+			
+			$sess_data = array(
+						
+					'user' => $login_admin,
+					'tipo' => 'admin',
+					'logado' => true
+			);
+				
+			$this->session->set_userdata($sess_data);
+			
 			redirect ( 'inicio_dash', 'refresh' );
 		}
 	}
 	
 	public function logout(){
 		
-		$this->session->unset_userdata('user');
-		$this->session->unset_userdata('tipo');
-		redirect("admin");
+		$this->session->sess_destroy();
+		
+		redirect("admin", 'refresh');
 	}
 	
 	public function altera_admin(){
