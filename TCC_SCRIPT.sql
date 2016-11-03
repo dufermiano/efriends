@@ -93,16 +93,6 @@ CREATE TABLE Historico_Cliente (
   ON DELETE CASCADE
 );
 
-DELIMITER $$
-CREATE PROCEDURE CadastraAdministrador(Login varchar(15), Senha varchar(255), Nome varchar(100), Telefone varchar(13), Email varchar(50))
-BEGIN
-INSERT INTO Administrador(Login_Admin, Senha_Admin, Nome_Admin, Telefone_Admin, Email_Admin, Data_Cadastro)
-VALUES (Login, Senha, Nome, Telefone, Email, now());
-END $$
-DELIMITER ;
-
-CALL CadastraAdministrador("dufermiano", md5("123456"), "Eduardo", "(11) 980357500", "dufermiano43@gmail.com");
-
 #trigger que audita data de uma PUBLICAÇÃO por parte de um usuário
 DELIMITER $$
 CREATE TRIGGER tg_cliente_ebook_publicacao AFTER INSERT
@@ -129,27 +119,27 @@ BEGIN
 
  IF (New.Nome_Cli <> Old.Nome_Cli) THEN 
 	INSERT INTO HISTORICO_CLIENTE VALUES
-	((SELECT IDCLIENTE FROM CLIENTE WHERE SESSAO = TRUE), 'ALTERAÇÃO DE NOME', 'Nome_Cli', OLD.Nome_Cli, NEW.Nome_Cli, NOW());
+	(NEW.idCliente, 'ALTERAÇÃO DE NOME', 'Nome_Cli', OLD.Nome_Cli, NEW.Nome_Cli, NOW());
 END IF;
 
  IF (New.Email_Cli <> Old.Email_Cli) THEN 
 	INSERT INTO HISTORICO_CLIENTE VALUES
-	((SELECT IDCLIENTE FROM CLIENTE WHERE SESSAO = TRUE), 'ALTERAÇÃO DE EMAIL', 'Email_Cli', OLD.Email_Cli, NEW.Email_Cli, NOW());
+	(NEW.idCliente, 'ALTERAÇÃO DE EMAIL', 'Email_Cli', OLD.Email_Cli, NEW.Email_Cli, NOW());
 END IF;
 
  IF (New.Telefone_Cli <> Old.Telefone_Cli) THEN
 	INSERT INTO HISTORICO_CLIENTE VALUES
-	((SELECT IDCLIENTE FROM CLIENTE WHERE SESSAO = TRUE), 'ALTERAÇÃO DE TELEFONE', 'Telefone_Cli', OLD.Telefone_Cli, NEW.Telefone_Cli, NOW());
+	(NEW.idCliente, 'ALTERAÇÃO DE TELEFONE', 'Telefone_Cli', OLD.Telefone_Cli, NEW.Telefone_Cli, NOW());
 END IF;
 
  IF (New.Newsletter <> Old.Newsletter) THEN
 	INSERT INTO HISTORICO_CLIENTE VALUES
-	((SELECT IDCLIENTE FROM CLIENTE WHERE SESSAO = TRUE), 'ALTERAÇÃO NA NEWSLETTER', 'Newsletter', OLD.Newsletter, NEW.Newsletter, NOW());
+	(NEW.idCliente, 'ALTERAÇÃO NA NEWSLETTER', 'Newsletter', OLD.Newsletter, NEW.Newsletter, NOW());
 END IF;
 
  IF (New.Senha_Cli <> Old.Senha_Cli) THEN
 	INSERT INTO HISTORICO_CLIENTE VALUES
-	((SELECT IDCLIENTE FROM CLIENTE WHERE SESSAO = TRUE), 'ALTERAÇÃO NA SENHA', 'Senha_Cli', OLD.Senha_Cli, NEW.Senha_Cli, NOW());
+	(NEW.idCliente, 'ALTERAÇÃO NA SENHA', 'Senha_Cli', OLD.Senha_Cli, NEW.Senha_Cli, NOW());
 END IF;
 
 END $$

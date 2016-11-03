@@ -128,6 +128,8 @@ class Cliente extends CI_Controller {
 			
 			redirect ( 'plataforma', 'refresh' );
 			
+			//select count(*) as count from ci_sessions WHERE data LIKE '%logado|b:1%';
+			
 		}
 	}
 	
