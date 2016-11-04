@@ -1,6 +1,17 @@
 <?php $this->load->view ( 'plataforma/head' );?>
 <link rel="stylesheet" href="<?php echo base_url('assets/css/sobre.css')?>">
 <?php $this->load->view ( 'plataforma/nav' );?>
+
+<script>
+
+function enviaPagseguro(){
+$.post('index.php/Pagseguro/geraPag','',function(data){
+$('#code').val(data);
+$('#comprar').submit();
+})
+}
+
+</script>
 <section>
   <article>
   <?php foreach ($ebook as $dados):?>
@@ -18,7 +29,22 @@
           <p>ou 2x de R$ <?php echo ($dados->Preco_Ebook/2) ?></p>
         </div>
         <div class="width50 txt-center" style="margin-top: 80px;">
+        <?php $logado = $this->session->userdata('logado');
+    if($logado != true):
+    ?>
           <a href="#" class="comprar">Comprar</a>
+    <?php else: ?>  
+			
+			
+			    
+		<button onclick="enviaPagseguro()">Comprar</button>
+		<form id="comprar" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+
+		<input type="hidden" name="code" id="code" value="" />
+
+		</form>
+		<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+    <?php endif;?>
         </div>
       </div>
     </div>
