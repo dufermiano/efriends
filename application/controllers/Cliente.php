@@ -31,6 +31,53 @@ class Cliente extends CI_Controller {
 		
 	}
 	
+	public function recuperaSenha(){
+		
+		$cliente['login'] = $this->input->post('login');
+		$cliente['pergunta'] = $this->input->post('pergunta');
+		$cliente['resposta'] = $this->input->post('resposta');
+		
+		if($this->cliente->getIdCliente($cliente['login'])){
+			
+			$p = $this->cliente->verificaPergunta($cliente['login']);
+			foreach($p as $pergunta):
+				if($cliente['pergunta'] == $pergunta->Pergunta){
+				
+					$r = $this->cliente->verificaResposta($cliente['login']);
+					
+					foreach ($r as $resposta):
+						if($cliente['resposta'] == $resposta->Resposta){
+						redirect("troca_senha?login=".$cliente['login'], "refresh");
+					}
+					else{
+						set_msg ( "<p>Resposta incorreta, verifique se a escrita está correta com acentos e letras maiúsculas</p>" );
+						redirect ( 'esqueci_senha', 'refresh' );
+					}
+					endforeach;
+				}
+				else{
+					set_msg ( "<p>Pergunta incorreta</p>" );
+					redirect ( 'esqueci_senha', 'refresh' );
+				}
+			endforeach;
+			
+			
+			
+		}
+		else{
+			set_msg ( "<p>Login Inválido</p>" );
+			redirect ( 'esqueci_senha', 'refresh' );
+		}
+		
+		
+	
+	}
+	
+	public function troca_senha(){
+		$this->load->view("plataforma/troca_senha");
+	}
+	
+	
 	public function muda_status(){
 		$idcli =  $this->input->get ( 'cod' );
 		$status =  $this->input->get ( 'status' );

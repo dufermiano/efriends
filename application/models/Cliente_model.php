@@ -10,6 +10,24 @@ class Cliente_model extends CI_Model{
 	}
 	
 	
+	public function verificaPergunta($login){
+		$this->db->select('Pergunta');
+		$this-> db -> from ('Cliente');
+		$this-> db -> where('Login_Cli', $login );		
+		$query = $this-> db -> get();
+		
+		return $query->result();
+	}
+	
+	public function verificaResposta($login){
+		$this->db->select('Resposta');
+		$this-> db -> from ('Cliente');
+		$this-> db -> where('Login_Cli', $login );
+		$query = $this-> db -> get();
+	
+		return $query->result();
+	}
+	
 	public function getIdCliente($login){
 		$this-> db -> select ('idCliente');
 		$this-> db -> from ('Cliente');
