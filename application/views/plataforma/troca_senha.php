@@ -7,8 +7,8 @@ $this->load->view ( 'plataforma/nav' );?>
       <article>
         <form action="index.php/Cliente/muda_senha" method="post">
             <h3>Troque a senha:</h3>
-            <input type="text" placeholder="Nova Senha" name="login"> 
-            <input type="text" placeholder="Confirme a nova senha" name="login"> 
+            <input type="text" placeholder="Nova Senha" name="senha1"> 
+            <input type="text" placeholder="Confirme a nova senha" name="senha2"> 
             <button>Enviar</button>
         </form>
         <?php if($msg = get_msg()): echo '<div class="msg-box" style="margin-top:5px;">'.$msg.'</div>'; endif;?>

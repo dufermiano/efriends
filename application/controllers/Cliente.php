@@ -47,7 +47,7 @@ class Cliente extends CI_Controller {
 					
 					foreach ($r as $resposta):
 						if($cliente['resposta'] == $resposta->Resposta){
-						redirect("troca_senha?login=".$cliente['login'], "refresh");
+						redirect("recupera_senha?login=".$cliente['login'], "refresh");
 					}
 					else{
 						set_msg ( "<p>Resposta incorreta, verifique se a escrita está correta com acentos e letras maiúsculas</p>" );
@@ -68,10 +68,37 @@ class Cliente extends CI_Controller {
 			set_msg ( "<p>Login Inválido</p>" );
 			redirect ( 'esqueci_senha', 'refresh' );
 		}
-		
-		
 	
 	}
+	
+	public function muda_senha(){
+		$senha1 = $this->input->post('senha1');
+		$senha2 = $this->input->post('senha2');
+		
+		if($senha1 != $senha2){
+			set_msg ( "Senhas devem coincidir." );
+			redirect ( 'recupera_senha' );
+			return false;
+		}
+		
+		$senha_crip = md5($senha1);
+		
+		$user = $this->input->get('login');
+				
+			$r = $this->cliente->get_senha();
+		
+			foreach($r as $atual):
+			if($atual->Senha_Cli == $senha_crip):
+			set_msg ( "Nova senha não deve ser igual a atual." );
+			redirect ( 'recupera_senha' );
+			return false;
+			endif;
+			endforeach;
+				
+			$result = $this->cliente->troca_senha ( $senha_crip, $user );	
+	}
+	
+	
 	
 	public function troca_senha(){
 		$this->load->view("plataforma/troca_senha");
