@@ -111,6 +111,14 @@ class Ebook_model extends CI_Model{
 		return $query->result();
 	}
 	
+	public function sobre_pagseguro($idEbook){
+		$this->db->select('idEbook, Titulo_Ebook, Preco_Ebook');
+		$this->db->from('Ebook');
+		$this-> db -> where ('idEbook', $idEbook);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	public function todos(){
 		$this->db->where('Status_ebook', true);
 		$query = $this->db->get('ebook');

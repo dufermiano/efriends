@@ -208,6 +208,11 @@ else {
 		
 	}
 	
+	public function pagseguro(){
+			$dados['livro'] = $this->ebook->sobre_pagseguro (9);
+			echo json_encode($dados['livro']);
+	}
+	
 	public function muda_status(){
 		$idebook =  $this->input->get ( 'cod' );
 		$status =  $this->input->post ( 'status' );
