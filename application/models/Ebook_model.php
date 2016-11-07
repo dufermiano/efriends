@@ -119,6 +119,14 @@ class Ebook_model extends CI_Model{
 		return $query->result();
 	}
 	
+	public function pega_link($idEbook){
+		$this->db->select('obra');
+		$this->db->from('Ebook');
+		$this-> db -> where ('idEbook', $idEbook);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	public function todos(){
 		$this->db->where('Status_ebook', true);
 		$query = $this->db->get('ebook');

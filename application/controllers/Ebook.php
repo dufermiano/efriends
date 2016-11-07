@@ -214,6 +214,12 @@ else {
 			echo json_encode($dados['livro']);
 	}
 	
+	public function pegalink(){
+	
+		$dados['livro'] = $this->ebook->pega_link ($this->input->post('cod'));
+		echo json_encode($dados['livro']);
+	}
+	
 	public function muda_status(){
 		$idebook =  $this->input->get ( 'cod' );
 		$status =  $this->input->post ( 'status' );

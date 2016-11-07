@@ -25,3 +25,20 @@ function enviaPagseguro(){
 function mensagem(){
 	alert("Para comprar, você precisa estar logado!");
 }
+
+function pegalink(){
+	var codigo = decodeURIComponent(new RegExp('[\?&]' + 'cod' + '=([^&#]*)').exec(window.location.href)[1]);
+	
+	$.ajax({
+		  url: "index.php/Ebook/pegalink/",
+		  data: {cod : codigo},
+		  type: 'post',
+		  dataType: 'json',
+	 	  success: function (data){
+	 		  window.open(data[0].obra);
+		 }
+
+	});
+	
+	
+}
