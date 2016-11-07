@@ -209,7 +209,8 @@ else {
 	}
 	
 	public function pagseguro(){
-			$dados['livro'] = $this->ebook->sobre_pagseguro (9);
+		
+			$dados['livro'] = $this->ebook->sobre_pagseguro ($this->input->post('cod'));
 			echo json_encode($dados['livro']);
 	}
 	

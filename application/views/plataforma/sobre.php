@@ -2,39 +2,6 @@
 <link rel="stylesheet"
 	href="<?php echo base_url('assets/css/sobre.css')?>">
 <?php $this->load->view ( 'plataforma/nav' );?>
-
-<script>
-
-function enviaPagseguro(){
-
-	$.ajax({
-		  url: "index.php/Ebook/pagseguro",
-		  data: "",
-		  dataType: 'json',
-	 	  success: function (data){
-		 	  alert('oba'); //estou testando o acesso ao pag seguro 
-		 	  //e se consegue pegar o id do ebook para a chamada ajax pela URL 
-	 			$.each(data, function (i, item) {
-					console.log(data);
-					
-	 				var dados = {'id': item.idEbook, 'titulo': item.Titulo_Ebook, 'valor': '9.00'};
-	 				
-	 				$.post('index.php/Pagseguro/geraPag',dados,function(data){
-	 				$('#code').val(data);
-	 				$('#comprar').submit();
-	 				});
-				});
-		 }
-
-	});
-	
-}
-
-function mensagem(){
-	alert("Para comprar, você precisa estar logado!");
-}
-
-</script>
 <section>
 	<article>
   <?php foreach ($ebook as $dados):?>
@@ -88,5 +55,6 @@ function mensagem(){
 <?php $this->load->view ( 'plataforma/footer' );?>
 <script src="<?php echo base_url('assets/js/jquery.min.js')?>"></script>
 <script src="<?php echo base_url('assets/js/mobile.js')?>"></script>
+<script src="<?php echo base_url('assets/js/pagseguro.js')?>"></script>
 </body>
 </html>
