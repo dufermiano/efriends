@@ -4,13 +4,22 @@ class Pagseguro extends CI_Controller {
 	function __construct() {
 		parent::__construct ();
 		$this->load->helper ( 'url' );
+		$this->load->model ("Ebook_model", "ebook");
+		$this->load->model ("Cliente_model", "cliente");
 	}
+	
+	public function pagseguro(){
+	
+		$dados['livro'] = $this->ebook->sobre_pagseguro ($this->input->post('cod'));
+		echo json_encode($dados['livro']);
+	}
+	
 	public function geraPag() {
 		
 		$dados = $this->input->post(); 
 		
-		$data ['token'] = 'B2F5E79534D44759B3221A614BC0F814';
-		$data ['email'] = 'dufermiano43@gmail.com';
+		$data ['token'] = $dados['token'];
+		$data ['email'] = $dados['email'];
 		$data ['currency'] = 'BRL';
 		$data ['itemId1'] = $dados['id'];
 		$data ['itemQuantity1'] = '1';

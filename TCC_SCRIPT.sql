@@ -37,7 +37,8 @@ CREATE TABLE Cliente (
   Status_Cli BOOL NOT NULL DEFAULT TRUE,
   Data_Cadastro DATETIME NOT NULL,
   Pergunta VARCHAR(100) NOT NULL, 
-  Resposta VARCHAR(100) NOT NULL
+  Resposta VARCHAR(100) NOT NULL,
+  Token VARCHAR(255)	
 );
 
 CREATE TABLE Ebook (
@@ -46,7 +47,7 @@ CREATE TABLE Ebook (
   Titulo_Ebook VARCHAR (100) NOT NULL,
   Descricao_Ebook TINYTEXT NOT NULL,
   Autor_Ebook VARCHAR(100) NOT NULL,
-  Preco_Ebook DOUBLE,
+  Preco_Ebook DECIMAL(10,2),
   Categoria VARCHAR (100) NOT NULL,
   Status_Ebook BOOL NOT NULL DEFAULT TRUE,
   Data_Cadastro DATETIME NOT NULL, 

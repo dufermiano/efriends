@@ -50,6 +50,12 @@ foreach ( $cliente as $row ) :
 									<label>E-mail</label> <input class="form-control" type="email"
 										value="<?php echo $row->Email_Cli ?>" name="email" required>
 								</div>
+								
+								<div class="form-group">
+									<label>Token PagSeguro</label> <input class="form-control" type="email"
+										value="<?php echo $row->Token ?>" name="email" required>
+								</div>
+								
 								<div class="form-group">
 									
 									<?php 

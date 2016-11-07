@@ -124,8 +124,10 @@ class Ebook_model extends CI_Model{
 	}
 	
 	public function sobre_pagseguro($idEbook){
-		$this->db->select('idEbook, Titulo_Ebook, Preco_Ebook');
-		$this->db->from('Ebook');
+		$this->db->select('Ebook.idEbook, Ebook.Titulo_Ebook, Ebook.Preco_Ebook, Cliente.Token, Cliente.Email_Cli');
+		$this->db->from('log_cliente_ebook');
+		$this->db->join('Cliente', "Cliente.idCliente = log_cliente_ebook.Cliente_idCliente", 'inner' );
+		$this->db->join('Ebook', "Ebook.idEbook = log_cliente_ebook.Ebook_idEbook", 'inner' );
 		$this-> db -> where ('idEbook', $idEbook);
 		$query = $this->db->get();
 		return $query->result();

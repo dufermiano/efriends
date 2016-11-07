@@ -208,12 +208,6 @@ else {
 		
 	}
 	
-	public function pagseguro(){
-		
-			$dados['livro'] = $this->ebook->sobre_pagseguro ($this->input->post('cod'));
-			echo json_encode($dados['livro']);
-	}
-	
 	public function pegalink(){
 	
 		$dados['livro'] = $this->ebook->pega_link ($this->input->post('cod'));
