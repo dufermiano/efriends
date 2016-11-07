@@ -23,7 +23,7 @@ function enviaPagseguro(){
 }
 
 function mensagem(){
-	alert("Para comprar, você precisa estar logado!");
+	alert("Para comprar ou acessar, você precisa estar logado!");
 }
 
 function pegalink(){

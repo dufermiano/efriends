@@ -26,7 +26,9 @@
 						$logado = $this->session->userdata ( 'logado' );
 						if ($logado != true) :
 					?>
-          				<a href="#" onclick="mensagem()" class="comprar">Acessar</a>
+						<div class="width50 txt-center" style="margin-top: 80px;">
+          					<a href="#" onclick="mensagem()" class="comprar">Acessar</a>
+          				</div>
     				<?php else:  ?>  
     				<div class="width50 txt-center" style="margin-top: 80px;">
     				<a href='#' class='comprar' onclick='pegalink()'>Acessar</a>
@@ -42,7 +44,9 @@
 						$logado = $this->session->userdata ( 'logado' );
 						if ($logado != true) :
 					?>
+						<div class="width50 txt-center" style="margin-top: 80px;">
           					<a href="#" onclick="mensagem()" class="comprar">Comprar</a>
+          				</div>	
     				<?php else:  ?>  
     						<div class="width50 txt-center" style="margin-top: 80px;">
 		  						<a href='#' class='comprar' onclick='enviaPagseguro()'>Comprar</a>
