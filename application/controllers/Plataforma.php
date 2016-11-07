@@ -7,11 +7,25 @@ class Plataforma extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('Ebook_model', 'ebook');
+		$this->load->model('Cliente_model', 'cliente');
+		
 	}
 
 	public function index()
 	{
+		$logado = $this->session->userdata ( 'logado' );
+		$id = $this->cliente->getIdCliente($this->session->userdata('user'));
+		
+		foreach ($id as $row):
+			$idCli = $row->idCliente; //coloca na variável
+		endforeach;
+		
+		if ($logado != true):
 		$data['dados'] = $this->ebook->carrega_site();
+		else:
+			$data['dados'] = $this->ebook->carrega_site_logado($idCli);
+		endif;
+		
 		if($data['dados'] == null){
 			$this->load->view('plataforma/index');
 		}

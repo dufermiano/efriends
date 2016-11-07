@@ -21,7 +21,6 @@
 					<div class="width50">
 						<h2>Publicação! </h2>
 						<p>Você não precisa pagar nada para ler esse livro, apenas clique em "Acessar" e ele será disponibilizado para você</p>
-					
 					<?php
 						$logado = $this->session->userdata ( 'logado' );
 						if ($logado != true) :
@@ -35,7 +34,6 @@
 		  			</div>
    				 	<?php endif;?>
 					</div>
-					
 				<?php else:?>
 					<div class="width50">
 						<h2>R$ <?php echo $dados->Preco_Ebook ?></h2>

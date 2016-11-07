@@ -5,6 +5,6 @@ post_max_size
 
 
 Próximos passos: 
-- Fazer fluxo de venda com PagSeguro
 - Fluxo de esqueci a senha
 - Relatórios
+- Validar processo de vendas, e inclusão do livro na dashboard

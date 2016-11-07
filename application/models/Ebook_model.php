@@ -23,7 +23,7 @@ class Ebook_model extends CI_Model{
 		 
          $this->db->set('data_cadastro', 'NOW()', FALSE);
         if( ! $this->db->insert('ebook', $dados_ebook)){
-        	echo $this->db->error();
+        	var_dump ($this->db->error());
         	return;
         } 
          
@@ -96,6 +96,18 @@ class Ebook_model extends CI_Model{
 		$this->db->where('Status_ebook', true);
 		$this->db->limit(5);
 		$query = $this->db->get('Ebook');
+		return $query->result();
+	}
+	
+	public function carrega_site_logado($idCli){
+		$this->db->select('Ebook.idEbook, Ebook.Capa, Ebook.Titulo_Ebook');
+		$this->db->from('log_cliente_ebook');
+		$this->db->join('Cliente', "Cliente.idCliente <> log_cliente_ebook.Cliente_idCliente", 'inner' );
+		$this->db->join('Ebook', "Ebook.idEbook = log_cliente_ebook.Ebook_idEbook", 'inner' );
+		$this-> db -> where ('Status_Ebook', true);
+		$this->db->where('Cliente.idCliente', $idCli);
+		$this->db->limit(5);
+		$query = $this->db->get();
 		return $query->result();
 	}
 	
