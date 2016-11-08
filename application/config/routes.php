@@ -76,6 +76,8 @@ $route['logout'] = "Cliente/logout";//chama função de logout
 $route['status_ebook'] = "Ebook/status_ebook";//direciona para catalogo-admin.php 
 $route['obra_cli'] = "Ebook/obra_cli";//direciona para catalogo-admin.php
 $route['novo_admin'] = "Admin/novo_admin";//direciona para catalogo-admin.php
+$route['esqueci_senha_admin'] = "Dashboard/esqueci_senha";
+$route['recupera_senha_admin']= "Admin/muda_senha";
 //rotas da plataforma
 
 $route['sobre'] = 'Ebook/sobre_livro';//direciona para sobre.php da plataforma

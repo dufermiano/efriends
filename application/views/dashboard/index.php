@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Lembrar me
+                                       <a href="<?php echo base_url('esqueci_senha_admin')?>">Esqueci a senha</a><br>
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

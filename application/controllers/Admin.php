@@ -15,6 +15,8 @@ class Admin extends CI_Controller {
 	public function troca_senha(){
 		$this->load->view('dashboard/troca_senha_adm');
 	}
+	
+	
 	public function novo_admin(){
 		$this->load->view('dashboard/novo-admin');
 	}
@@ -102,5 +104,89 @@ class Admin extends CI_Controller {
 		}
 	
 	}
+	
+	public function recuperaSenha(){
+	
+		$admin['login'] = $this->input->post('login');
+		$admin['pergunta'] = $this->input->post('pergunta');
+		$admin['resposta'] = $this->input->post('resposta');
+	
+		if($this->admin->getIdAdmin($admin['login'])){
+				
+			$p = $this->admin->verificaPergunta($admin['login']);
+			foreach($p as $pergunta):
+			if($admin['pergunta'] == $pergunta->Pergunta){
+	
+				$r = $this->admin->verificaResposta($admin['login']);
+					
+				foreach ($r as $resposta):
+				if($admin['resposta'] == $resposta->Resposta){
+					redirect("recupera_senha_admin?login=".$admin['login'], "refresh");
+				}
+				else{
+					set_msg ( "<p>Resposta/Resposta incorreta, verifique se a escrita está correta com acentos e letras maiúsculas</p>" );
+					redirect ( 'esqueci_senha_admin', 'refresh' );
+				}
+				endforeach;
+			}
+			else{
+				set_msg ( "<p>Resposta/Resposta incorreta, verifique se a escrita está correta com acentos e letras maiúsculas</p>" );
+				redirect ( 'esqueci_senha_admin', 'refresh' );
+			}
+			endforeach;
+				
+				
+				
+		}
+		else{
+			set_msg ( "<p>Login Inválido</p>" );
+			redirect ( 'esqueci_senha_admin', 'refresh' );
+		}
+	
+	}
+	
+	public function muda_senha(){
+		$this->load->view("dashboard/recupera_senha");
+	}
+	
+	public function senha(){
+		$senha1 = $this->input->post('senha1');
+		$senha2 = $this->input->post('senha2');
+	
+		$login = $this->input->post('login');
+	
+		if($senha1 != $senha2){
+			set_msg ( "Senhas devem coincidir." );
+			redirect('recupera_senha_admin?login='.$login, 'refresh');
+			return false;
+		}
+	
+		$senha_crip = md5($senha1);
+	
+		$r = $this->admin->get_senha($login);
+	
+		foreach($r as $atual):
+		if($atual->Senha_Admin == $senha_crip):
+		set_msg ( "Nova senha não deve ser igual a atual." );
+		redirect('recupera_senha_admin?login='.$login, 'refresh');
+		return false;
+		endif;
+		endforeach;
+	
+		$result = $this->admin->troca_senha ( $senha_crip, $login );
+			
+		set_msg ( "Senha alterada com sucesso." );
+		redirect('admin', 'refresh');
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -146,6 +146,25 @@ class Admin_model extends CI_Model{
 	
 	}
 	
+
+	public function verificaPergunta($login){
+		$this->db->select('Pergunta');
+		$this-> db -> from ('Administrador');
+		$this-> db -> where('Login_Admin', $login );
+		$query = $this-> db -> get();
+	
+		return $query->result();
+	}
+	
+	public function verificaResposta($login){
+		$this->db->select('Resposta');
+		$this-> db -> from ('Administrador');
+		$this-> db -> where('Login_Admin', $login );
+		$query = $this-> db -> get();
+	
+		return $query->result();
+	}
+	
 	
 	
 }

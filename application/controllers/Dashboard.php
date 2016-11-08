@@ -9,6 +9,11 @@ class Dashboard extends CI_Controller {
 		$this->load->view ( 'dashboard/dashboard' );
 		
 	}
+	
+	public function esqueci_senha(){
+		$this->load->view('dashboard/esqueci_senha_admin');
+	}
+	
 	public function index() {
 		$this->load->view ( 'dashboard/index' );
 	}
