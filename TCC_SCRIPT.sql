@@ -141,6 +141,21 @@ END IF;
 	(NEW.idCliente, 'ALTERAÇÃO NA SENHA', 'Senha_Cli', OLD.Senha_Cli, NEW.Senha_Cli, NOW());
 END IF;
 
+IF (New.Token <> Old.Token) THEN
+	INSERT INTO HISTORICO_CLIENTE VALUES
+	(NEW.idCliente, 'ALTERAÇÃO NO TOKEN PAGSEGURO', 'Token', OLD.Token, NEW.Token, NOW());
+END IF;
+
+IF (New.Pergunta <> Old.Pergunta ) THEN
+	INSERT INTO HISTORICO_CLIENTE VALUES
+	(NEW.idCliente, 'ALTERAÇÃO NA PERGUNTA DE SEGURANÇA', 'Pergunta de segurança', OLD.Pergunta , NEW.Pergunta , NOW());
+END IF;
+
+IF (New.Resposta <> Old.Resposta) THEN
+	INSERT INTO HISTORICO_CLIENTE VALUES
+	(NEW.idCliente, 'ALTERAÇÃO NA RESPOSTA DE SEGURANÇA', 'Resposta de segurança', OLD.Resposta, NEW.Resposta, NOW());
+END IF;
+
 END $$
 DELIMITER ;
 
