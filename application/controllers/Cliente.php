@@ -8,6 +8,42 @@ class Cliente extends CI_Controller {
 		$this->load->model('admin_model', 'admin');
 	}
 	
+	public function EnviarEmail()
+	{
+		// Carrega a library email
+		$this->load->library('email');
+		 
+		//Inicia o processo de configuração para o envio do email
+		$config['protocol'] = 'mail'; // define o protocolo utilizado
+		$config['wordwrap'] = TRUE; // define se haverá quebra de palavra no texto
+		$config['validate'] = TRUE; // define se haverá validação dos endereços de email
+		 
+				$config['mailtype'] = 'text';
+	
+				// Inicializa a library Email, passando os parâmetros de configuração
+				$this->email->initialize($config);
+	
+				// Define remetente e destinatário
+				$this->email->from('remetente@email.com', 'Remetente'); // Remetente
+				$this->email->to('dufermiano43@gmail.com');
+				// Define o assunto do email
+				$this->email->subject('Enviando emails com a library nativa do CodeIgniter');
+	
+						$this->email->message('oi');
+						 
+							if($this->email->send())
+							{
+								echo 'foi';
+							}
+							else
+							{
+								echo $this->email->print_debugger();
+								
+							}
+	}
+	
+	
+	
 	public function clientes(){
 		$dados['clientes'] = $this->cliente->get_cli_lista();
 		$this->load->view('dashboard/clientes');

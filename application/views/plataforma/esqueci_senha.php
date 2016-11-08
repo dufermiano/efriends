@@ -5,7 +5,7 @@ $this->load->view ( 'plataforma/nav' );?>
 <link rel="stylesheet" href="<?php echo base_url('assets/css/painel.css')?>">
     <section>
       <article>
-        <form action="index.php/Cliente/recuperaSenha" method="post">
+        <form action="index.php/Cliente/EnviarEmail" method="post">
             <h3>Login:</h3>
             <input type="text" placeholder="Usuario" name="login"> 
             <select name="pergunta">
