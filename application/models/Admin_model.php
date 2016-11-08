@@ -125,10 +125,10 @@ class Admin_model extends CI_Model{
 		return $this->db->affected_rows();
 	}
 	
-	public function get_senha(){
+	public function get_senha($login){
 		$this-> db -> select ('Senha_Admin');
 		$this-> db -> from ('Administrador');
-		$this-> db -> where('Login_Admin', $this->session->userdata('user') );
+		$this-> db -> where('Login_Admin', $login );
 		$this-> db -> limit(1);
 		
 		$query = $this-> db -> get();

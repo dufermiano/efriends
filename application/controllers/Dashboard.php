@@ -39,7 +39,7 @@ class Dashboard extends CI_Controller {
 		if($sessao == "cliente"){
 			$this->load->model ( 'Cliente_model', 'cliente' );
 			
-			$r = $this->cliente->get_senha();
+			$r = $this->cliente->get_senha($user);
 				
 			foreach($r as $atual):
 			if($atual->Senha_Cli == $senha_crip):
@@ -55,7 +55,7 @@ class Dashboard extends CI_Controller {
 		if($sessao == "admin"){
 			$this->load->model ('Admin_model','admin');
 			
-			$r = $this->admin->get_senha();
+			$r = $this->admin->get_senha($user);
 			
 			foreach($r as $atual):
 			if($atual->Senha_Admin == $senha_crip):

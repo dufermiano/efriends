@@ -10,8 +10,9 @@ $this->load->view ( 'plataforma/nav' );?>
             <input type="text" placeholder="Usuario" required name='login'>
             <input type="password" placeholder="Senha" required name='senha'>
             <a class="esqueci-senha" href="<?php echo base_url('esqueci_senha')?>">Esqueci a senha</a><br>
-            <button>Login</button> <?php if($msg = get_msg()): echo '<div class="msg-box">'.$msg.'</div>'; endif;?>
+            <button>Login</button> 
         </form>
+        <?php if($msg = get_msg()): echo '<div class="msg-box" style="margin-top: 10px;">'.$msg.'</div>'; endif;?>
       </article>
     </section>
 

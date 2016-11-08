@@ -2,6 +2,7 @@
 <link rel="stylesheet"
 	href="<?php echo base_url('assets/css/sobre.css')?>">
 <?php $this->load->view ( 'plataforma/nav' );?>
+<script src="<?php echo base_url('assets/js/jquery.min.js')?>"></script>
 <section>
 	<article>
   <?php foreach ($ebook as $dados):?>
@@ -70,7 +71,7 @@
 	</article>
 </section>
 <?php $this->load->view ( 'plataforma/footer' );?>
-<script src="<?php echo base_url('assets/js/jquery.min.js')?>"></script>
+
 <script src="<?php echo base_url('assets/js/mobile.js')?>"></script>
 <script src="<?php echo base_url('assets/js/pagseguro.js')?>"></script>
 </body>

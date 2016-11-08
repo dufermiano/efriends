@@ -64,13 +64,21 @@ class Cliente_model extends CI_Model{
 				'telefone_cli' => $dados['telefone'],
 				'cpf_cli' => $dados['cpf'],
 				'newsletter' => $dados['newsletter'],
+				//'token' => $dados['token'],
+				'pergunta' => $dados['pergunta'],
+				'resposta' => $dados['resposta'],
 				'status_cli' => true,
 				'login_cli' => $dados['login'],
 				'senha_cli' => $dados['senha']
 		);
 			
 		$this->db->set('data_cadastro', 'NOW()', FALSE);
-		$this->db->insert('cliente', $dados_cliente);
+		
+		if( ! $this->db->insert('cliente', $dados_cliente)){
+			echo $this->db->error();
+			return;
+		}
+		
 		
 		return $this->db->insert_id();
 		}
@@ -143,6 +151,9 @@ class Cliente_model extends CI_Model{
 
 		$this->db->set('CPF_Cli', $cli['cpf']);
 		$this->db->set('Newsletter', $cli['newsletter']);
+		$this->db->set('Token', $cli['token']);
+		$this->db->set('Pergunta', $cli['pergunta']);
+		$this->db->set('Resposta', $cli['resposta']);
 	
 		$this-> db -> where('Login_Cli', $this->session->userdata('user'));
 		
@@ -216,17 +227,16 @@ class Cliente_model extends CI_Model{
 		
 	}
 	
-	public function get_senha(){
+	public function get_senha($login){
 		$this-> db -> select ('Senha_Cli');
 		$this-> db -> from ('Cliente');
-		$this-> db -> where('Login_Cli', $this->session->userdata('user') );
+		$this-> db -> where('Login_Cli', $login );
 		$this-> db -> limit(1);
 	
 		$query = $this-> db -> get();
 	
 		return $query->result();
 	}
-	
 	
 	
 }

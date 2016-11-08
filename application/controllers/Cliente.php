@@ -8,42 +8,6 @@ class Cliente extends CI_Controller {
 		$this->load->model('admin_model', 'admin');
 	}
 	
-	public function EnviarEmail()
-	{
-		// Carrega a library email
-		$this->load->library('email');
-		 
-		//Inicia o processo de configuração para o envio do email
-		$config['protocol'] = 'mail'; // define o protocolo utilizado
-		$config['wordwrap'] = TRUE; // define se haverá quebra de palavra no texto
-		$config['validate'] = TRUE; // define se haverá validação dos endereços de email
-		 
-				$config['mailtype'] = 'text';
-	
-				// Inicializa a library Email, passando os parâmetros de configuração
-				$this->email->initialize($config);
-	
-				// Define remetente e destinatário
-				$this->email->from('remetente@email.com', 'Remetente'); // Remetente
-				$this->email->to('dufermiano43@gmail.com');
-				// Define o assunto do email
-				$this->email->subject('Enviando emails com a library nativa do CodeIgniter');
-	
-						$this->email->message('oi');
-						 
-							if($this->email->send())
-							{
-								echo 'foi';
-							}
-							else
-							{
-								echo $this->email->print_debugger();
-								
-							}
-	}
-	
-	
-	
 	public function clientes(){
 		$dados['clientes'] = $this->cliente->get_cli_lista();
 		$this->load->view('dashboard/clientes');
@@ -86,13 +50,13 @@ class Cliente extends CI_Controller {
 						redirect("recupera_senha?login=".$cliente['login'], "refresh");
 					}
 					else{
-						set_msg ( "<p>Resposta incorreta, verifique se a escrita está correta com acentos e letras maiúsculas</p>" );
+						set_msg ( "<p>Resposta/Resposta incorreta, verifique se a escrita está correta com acentos e letras maiúsculas</p>" );
 						redirect ( 'esqueci_senha', 'refresh' );
 					}
 					endforeach;
 				}
 				else{
-					set_msg ( "<p>Pergunta incorreta</p>" );
+					set_msg ( "<p>Resposta/Resposta incorreta, verifique se a escrita está correta com acentos e letras maiúsculas</p>" );
 					redirect ( 'esqueci_senha', 'refresh' );
 				}
 			endforeach;
@@ -111,27 +75,30 @@ class Cliente extends CI_Controller {
 		$senha1 = $this->input->post('senha1');
 		$senha2 = $this->input->post('senha2');
 		
+		$login = $this->input->post('login');
+		
 		if($senha1 != $senha2){
 			set_msg ( "Senhas devem coincidir." );
-			redirect ( 'recupera_senha' );
+			redirect('recupera_senha?login='.$login, 'refresh');
 			return false;
 		}
 		
 		$senha_crip = md5($senha1);
-		
-		$user = $this->input->get('login');
 				
-			$r = $this->cliente->get_senha();
+			$r = $this->cliente->get_senha($login);
 		
 			foreach($r as $atual):
 			if($atual->Senha_Cli == $senha_crip):
 			set_msg ( "Nova senha não deve ser igual a atual." );
-			redirect ( 'recupera_senha' );
+			redirect('recupera_senha?login='.$login, 'refresh');
 			return false;
 			endif;
 			endforeach;
 				
-			$result = $this->cliente->troca_senha ( $senha_crip, $user );	
+			$result = $this->cliente->troca_senha ( $senha_crip, $login );	
+			
+			set_msg ( "Senha alterada com sucesso." );
+			redirect('login', 'refresh');
 	}
 	
 	
@@ -202,6 +169,11 @@ class Cliente extends CI_Controller {
 				$dados_insert ['telefone'] = $cliente ['telefone'];
 				$dados_insert ['cpf'] = $cliente ['cpf'];
 				$dados_insert ['login'] = $cliente ['login'];
+				//$dados_insert ['token'] = $cliente ['token'];
+				$dados_insert ['pergunta'] = $cliente ['pergunta'];
+				$dados_insert ['resposta'] = $cliente ['resposta'];
+				
+				
 				if($post_password1 != $post_password2){
 					
 					set_msg ( "<p>Senhas devem coincidir</p>" );
@@ -276,6 +248,20 @@ class Cliente extends CI_Controller {
 		$dados_update ['email'] = $cliente ['email'];
 		$dados_update ['telefone'] = $cliente ['telefone'];
 		$dados_update ['cpf'] = $cliente ['cpf'];
+		$dados_update ['token'] = $cliente ['token'];
+		
+		if($cliente ['pergunta'] == "Mês de aniversario?"):
+		$dados_update ['pergunta'] = 1;
+		
+		elseif($cliente ['pergunta'] == "Time do coração?"):
+		$dados_update ['pergunta'] = 2;
+		
+		elseif($cliente ['pergunta'] == "Qual o nome do seu cachorro?"):
+		
+		$dados_update ['pergunta'] = 3;
+		endif;
+		
+		$dados_update ['resposta'] = $cliente ['resposta'];
 		
 		if(isset($cliente['news'])):
 		$dados_update['newsletter'] = true;

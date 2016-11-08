@@ -5,14 +5,14 @@ $this->load->view ( 'plataforma/nav' );?>
 <link rel="stylesheet" href="<?php echo base_url('assets/css/painel.css')?>">
     <section>
       <article>
-        <form action="index.php/Cliente/EnviarEmail" method="post">
+        <form action="index.php/Cliente/recuperaSenha" method="post">
             <h3>Login:</h3>
             <input type="text" placeholder="Usuario" name="login"> 
             <select name="pergunta">
               <option>Pergunta de segurança</option>
-              <option value="1">Qual o nome do seu cachorro?</option>
+              <option value="1">Mês de aniversario?</option>
               <option value="2">Time do coração?</option>
-              <option value="3">Mês de aniversario?</option>
+              <option value="3">Qual o nome do seu cachorro?</option>
             </select>
             <input type="text" placeholder="Resposta" name="resposta">
             <button>Enviar</button>
