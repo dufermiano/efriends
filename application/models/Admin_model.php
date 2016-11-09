@@ -9,6 +9,33 @@ class Admin_model extends CI_Model{
 		
 	}
 	
+	public function get_relatorio_cli(){
+		
+		$this->db->select('cliente.idCliente, cliente.Nome_Cli, log_administrador_cliente.Data_Acao, log_administrador_cliente.Acao_Admin_Cli');
+		$this->db->from('log_administrador_cliente');
+		$this->db->join('Cliente', "cliente.idCliente = log_administrador_cliente.Cliente_idCliente", 'inner' );
+		$this->db->join('administrador ', "administrador.idAdministrador = log_administrador_cliente.Administrador_idAdministrador", 'inner' );
+		$this-> db -> where ('administrador.Login_Admin', $this->session->userdata('user'));
+		$query = $this->db->get();
+		return $query->result();
+		
+		
+		
+	}
+	
+	public function get_relatorio_ebook(){
+	
+		$this->db->select('ebook.idEbook, ebook.Titulo_Ebook, log_administrador_ebook.Data_Acao, log_administrador_ebook.Acao_Admin_Ebook');
+		$this->db->from('log_administrador_ebook');
+		$this->db->join('Ebook', "Ebook.idEbook = log_administrador_Ebook.Ebook_idEbook", 'inner' );
+		$this->db->join('administrador ', "administrador.idAdministrador = log_administrador_Ebook.Administrador_idAdministrador", 'inner' );
+		$this-> db -> where ('administrador.Login_Admin', $this->session->userdata('user'));
+		$query = $this->db->get();
+		return $query->result();
+	
+	
+	
+	}
 
 	public function log_admin_ebook($idAdmin, $idEbook, $acao){
 	

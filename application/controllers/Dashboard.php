@@ -20,6 +20,9 @@ class Dashboard extends CI_Controller {
 	public function relatorios() {
 		$this->load->view ( 'dashboard/relatorios' );
 	}
+	public function relatorios_cliente() {
+		$this->load->view ( 'dashboard/relatorios_cliente' );
+	}
 	
 	public function troca_senha(){
 		$this->load->view('dashboard/troca_senha');

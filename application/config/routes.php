@@ -66,6 +66,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['admin'] = 'Dashboard/index'; //direciona para index.php
 $route['inicio_dash'] = 'Dashboard/dashboard'; // direciona para dashboard.php
 $route['relatorios'] = 'Dashboard/relatorios'; //direciona para relatorios.php
+$route['relatorio_cli'] = 'Dashboard/relatorios_cliente';
 $route['catalogo_obra'] = 'Ebook/catalogo_obra'; //direciona para catalogo.php
 $route['cadastro_obra'] = 'Ebook'; //direciona para obra-cadastro.php
 $route['perfil'] = 'Admin/perfil'; //direciona para perfil.php

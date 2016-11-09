@@ -7,6 +7,22 @@ class Admin extends CI_Controller {
 		$this->load->model ( 'Admin_model', 'admin' );
 		$this->load->library ( 'session' );
 	}
+	
+	
+	public function relatorio_cliente(){
+		$dados['relatorio'] = $this->admin->get_relatorio_cli();
+		echo json_encode($dados['relatorio']);
+	}
+	
+	public function relatorio_ebook(){
+		$dados['relatorio'] = $this->admin->get_relatorio_ebook();
+		echo json_encode($dados['relatorio']);
+	}
+	
+	
+	
+	
+	
 	public function perfil() {
 		$dados_admin ["admin"] = $this->admin->get_admin();
 		$this->load->view ( 'dashboard/perfil', $dados_admin );
@@ -15,7 +31,6 @@ class Admin extends CI_Controller {
 	public function troca_senha(){
 		$this->load->view('dashboard/troca_senha_adm');
 	}
-	
 	
 	public function novo_admin(){
 		$this->load->view('dashboard/novo-admin');

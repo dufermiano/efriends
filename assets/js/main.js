@@ -18,20 +18,6 @@ function filtra(valor){
 	}
 }
 
-
-function validaSenha(){
-	
-	$.post('index.php/Cliente/muda_senha',dados,function(data){
-			$('#code').val(data);
-			$('#comprar').submit();
-		});
-	
-	
-	
-}
-
-
-
 function getCliente(url){
 	$("#corpo").empty();
 	var base = "obra_cli";
