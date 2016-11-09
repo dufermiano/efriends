@@ -44,7 +44,7 @@
                                     <input class="form-control" placeholder="Login" name="login" type="text" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                     <select name="pergunta">
+                                     <select name="pergunta" class="form-control">
 							              <option>Pergunta de segurança</option>
 							              <option value="1">Mês de aniversario?</option>
 							              <option value="2">Time do coração?</option>

@@ -41,6 +41,19 @@ $this->load->view('dashboard/nav-admin');
                                             <label>Email do Administrador</label>
                                             <input class="form-control" type="email" name="email">
                                         </div>
+                                        <div class="form-group">
+                                        <label>Pergunta de segurança</label>
+	                                        <select name="pergunta" required class="form-control">
+								              <option>Pergunta de segurança</option>
+								              <option value="1" >Mês de aniversario?</option>
+								              <option value="2">Time do coração?</option>
+								              <option value="3">Qual o nome do seu cachorro?</option>
+								            </select>
+							            </div>
+                                      <div class="form-group">
+                                      	<label>Resposta de segurança</label>
+                                      	<input class="form-control" type="text" placeholder="Resposta" name="resposta" required>
+                                      </div>                             
                                         <button type="submit" class="btn btn-primary" id="cadastro" name="btnEnviar" style="margin-top: 10px;">Cadastrar</button>
                                     </form>
                                 </div>

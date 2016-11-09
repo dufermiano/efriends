@@ -57,12 +57,29 @@ class Admin extends CI_Controller {
 	
 	public function altera_admin(){
 		
-		    $dados = $this->input->post();
-			$result = $this->admin->update_admin($dados);
+			$admin = $this->input->post ();
+			
+			$dados_update ['nome'] = $admin ['nome'];
+			$dados_update ['email'] = $admin ['email'];
+			$dados_update ['telefone'] = $admin ['telefone'];
+			
+			if($admin ['pergunta'] == "Mês de aniversario?"):
+			$dados_update ['pergunta'] = 1;
+			
+			elseif($admin ['pergunta'] == "Time do coração?"):
+			$dados_update ['pergunta'] = 2;
+			
+			elseif($admin ['pergunta'] == "Qual o nome do seu cachorro?"):
+			
+			$dados_update ['pergunta'] = 3;
+			endif;
+			
+			$dados_update ['resposta'] = $admin ['resposta'];
+			$result = $this->admin->update_admin($dados_update);
 			
 			if ($result) {
 				set_msg ( "<p class='text-sucess'>Alteração feita com sucesso</p>" );
-				$this->session->set_userdata("user", $dados['login']);
+				$this->session->set_userdata("user", $admin['login']);
 				redirect ( 'perfil', 'refresh' );
 			}
 	}
@@ -87,6 +104,8 @@ class Admin extends CI_Controller {
 		$dados_insert ['email'] = $admin ['email'];
 		$dados_insert ['telefone'] = $admin ['tel'];
 		$dados_insert ['login'] = $admin ['login'];
+		$dados_insert ['pergunta'] = $admin ['pergunta'];
+		$dados_insert ['resposta'] = $admin ['resposta'];
 		if($post_password1 != $post_password2){
 				
 			set_msg ( "<p>Senhas devem coincidir</p>" );

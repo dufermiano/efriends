@@ -41,10 +41,10 @@
 <form role="form" action="<?php echo base_url('index.php/Admin/senha')?>" method="post">
 <fieldset>
 <div class="form-group">
-<input type="password" placeholder="Nova Senha" name="senha1" required> 
+<input class="form-control" type="password" placeholder="Nova Senha" name="senha1" required> 
 </div>
 <div class="form-group">
-<input type="password" placeholder="Confirme a nova senha" name="senha2" required> 
+<input class="form-control" type="password" placeholder="Confirme a nova senha" name="senha2" required> 
  <input type="hidden" name="login" value="<?php echo $this->input->get('login');?>">
 </div>
 

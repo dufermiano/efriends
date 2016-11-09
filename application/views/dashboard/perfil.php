@@ -9,12 +9,26 @@ foreach ( $admin as $row ) :
 		</div>
 	</div>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
-		function trocaStatus(){
+		function trocaValor(){
 
-			var x = document.getElementById("statusSelect").value;
-			document.getElementById("statusInput").value = x;
+			var x = document.getElementById("perguntaSelect").value;
+
+			if(x == 1){
+				var valor = "Mês de aniversario?";
+			}
+			else if(x == 2){
+				var valor = "Time do coração?";
+				}
+			else if(x == 3){
+				var valor = "Qual o nome do seu cachorro?";
+				}
+			else{
+				var valor = document.getElementById("perguntaInput").value;
+				}
+			
+			document.getElementById("perguntaInput").value = valor;
 			}
 	
     </script>
@@ -45,6 +59,27 @@ foreach ( $admin as $row ) :
 								<div class="form-group">
 									<label>E-mail</label> <input class="form-control" type="email"
 										value="<?php echo $row->Email_Admin ?>" name="email" required>
+								</div>
+										<div class="form-group">
+									<label>Pergunta de segurança</label> 
+									<?php switch($row->Pergunta){
+										case 1:?><input class="form-control" type="text" readonly value="Mês de aniversario?" id="perguntaInput" name="pergunta" required>
+										
+									<?php break; case 2:?><input class="form-control" type="text" readonly value="Time do coração?" id="perguntaInput" name="pergunta" required>
+									<?php break; case 3:?><input class="form-control" type="text" readonly value="Qual o nome do seu cachorro?" id="perguntaInput" name="pergunta" required>
+									<?php break; }?>
+									<select onchange ="trocaValor()" id="perguntaSelect">
+							              <option>Mudar pergunta de segurança</option>
+							              <option value="1">Mês de aniversario?</option>
+							              <option value="2">Time do coração?</option>
+							              <option value="3">Qual o nome do seu cachorro?</option>
+            							</select>
+									
+								</div>
+								
+								<div class="form-group">
+									<label>Resposta de segurança</label> <input class="form-control" type="text"
+										value="<?php echo $row->Resposta ?>" name="resposta" required>
 								</div>
 								<div class="form-group">
 									<label>Data de cadastro</label> <input class="form-control"

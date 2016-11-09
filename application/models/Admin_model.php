@@ -80,7 +80,9 @@ class Admin_model extends CI_Model{
 				'telefone_admin' => $dados['telefone'],
 				'status_admin' => true,
 				'login_admin' => $dados['login'],
-				'senha_admin' => $dados['senha']
+				'senha_admin' => $dados['senha'],
+				'pergunta' => $dados['pergunta'],
+				'resposta' => $dados['resposta']
 		);
 			
 		$this->db->set('data_cadastro', 'NOW()', FALSE);
@@ -120,6 +122,8 @@ class Admin_model extends CI_Model{
 		$this->db->set('Nome_Admin', $admin['nome']);
 		$this->db->set('Telefone_Admin', $admin['telefone']);
 		$this->db->set('Email_Admin', $admin['email']);		
+		$this->db->set('Pergunta', $admin['pergunta']);
+		$this->db->set('Resposta', $admin['resposta']);
 		$this-> db -> where('Login_Admin', $this->session->userdata('user'));
 		$this-> db ->update('Administrador');
 		return $this->db->affected_rows();
