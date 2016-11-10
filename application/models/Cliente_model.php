@@ -65,6 +65,24 @@ class Cliente_model extends CI_Model{
 		return $query->result();
 	}
 	
+	public function getToken($login){
+		$this-> db -> select ('Token');
+		$this-> db -> from ('Cliente');
+		$this-> db -> where('Login_Cli', $login );
+		$this-> db -> limit(1);
+	
+		$query = $this-> db -> get();
+		
+		foreach ($query->result() as $row):
+			if ($row->Token != null){
+				return $query->result();
+		}
+		else{
+			return false;
+		}
+	endforeach;
+	}
+	
 	public function log_cli_ebook($idCli, $idEbook, $acao){	
 		
 		$dados = array(

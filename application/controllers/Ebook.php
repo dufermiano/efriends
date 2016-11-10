@@ -27,7 +27,25 @@ class Ebook extends CI_Controller {
 			$dados_insert ['titulo'] = $ebook ['titulo'];
 			$dados_insert ['descricao'] = $ebook ['descricao'];
 			$dados_insert ['autor'] = $ebook ['autor'];
-			$dados_insert ['preco'] = $ebook ['preco'];
+			
+			
+			if($ebook['preco'] == '' ){
+				
+				$dados_insert ['preco'] = 0;
+				
+			}
+			else{
+				$this->load->library('session');
+				$validado = $this->cli->getToken($this->session->userdata('user'));
+				
+				if($validado == false):
+				set_msg ( "<p>Para vender um livro, é necessário criar uma conta no PagSeguro e registrar seu Token no sistema. Acesse https://pagseguro.uol.com.br/ e gere seu token.</p>" );
+				redirect ( 'perfil_cli', 'refresh' );
+				else:
+				$dados_insert ['preco'] = $ebook ['preco'];
+				endif;
+			}
+			
 			$dados_insert ['categoria'] = $ebook ['categoria'];
 			
 			$dados_insert ['capa'] = upload_s3 ( 'users-capas', $upload_capa );

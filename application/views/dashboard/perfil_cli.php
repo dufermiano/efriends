@@ -77,7 +77,7 @@ foreach ( $cliente as $row ) :
 									<?php break; case 2:?><input class="form-control" type="text" readonly value="Time do coração?" id="perguntaInput" name="pergunta" required>
 									<?php break; case 3:?><input class="form-control" type="text" readonly value="Qual o nome do seu cachorro?" id="perguntaInput" name="pergunta" required>
 									<?php break; }?>
-									<select onchange ="trocaValor()" id="perguntaSelect">
+									<select onchange ="trocaValor()" id="perguntaSelect" class="form-control" style="margin-top:10px;">
 							              <option>Mudar pergunta de segurança</option>
 							              <option value="1">Mês de aniversario?</option>
 							              <option value="2">Time do coração?</option>

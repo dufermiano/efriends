@@ -94,6 +94,7 @@ class Ebook_model extends CI_Model{
 	//funcao que carrega o livro na página inicial de acordo com o status
 	public function carrega_site(){
 		$this->db->where('Status_ebook', true);
+		$this->db->order_by('RAND()');
 		$this->db->limit(5);
 		$query = $this->db->get('Ebook');
 		return $query->result();
@@ -143,6 +144,7 @@ class Ebook_model extends CI_Model{
 	
 	public function todos(){
 		$this->db->where('Status_ebook', true);
+		$this->db->order_by('idEbook', 'DESC');
 		$query = $this->db->get('ebook');
 		return $query->result();
 	}

@@ -8,6 +8,10 @@ class Cliente extends CI_Controller {
 		$this->load->model('admin_model', 'admin');
 	}
 	
+	public function validaToken(){
+		
+	}
+	
 	public function clientes(){
 		$dados['clientes'] = $this->cliente->get_cli_lista();
 		$this->load->view('dashboard/clientes');
@@ -179,7 +183,6 @@ class Cliente extends CI_Controller {
 				$dados_insert ['telefone'] = $cliente ['telefone'];
 				$dados_insert ['cpf'] = $cliente ['cpf'];
 				$dados_insert ['login'] = $cliente ['login'];
-				//$dados_insert ['token'] = $cliente ['token'];
 				$dados_insert ['pergunta'] = $cliente ['pergunta'];
 				$dados_insert ['resposta'] = $cliente ['resposta'];
 				
