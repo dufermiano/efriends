@@ -49,7 +49,8 @@ $this->load->view ( 'dashboard/nav-cli' );
 							<table id="main_table" class="table table-striped table-hover" style="">
 								<thead>
 									<tr>
-										<th>Data da alteração</th>
+										<th>Data ação</th>
+										<th>Ação realizada</th>
 										<th>Campo alterado</th>
 										<th>Valor antigo</th>
 										<th>Valor novo</th>
@@ -81,7 +82,7 @@ $this->load->view ( 'dashboard/nav-cli' );
 										<th>Código do Livro</th>
 										<th>Titulo do Livro</th>
 										<th>Data da ação</th>
-										<th>Ação</th>
+										<th>Ação realizada</th>
 										
 									</tr>
 								</thead>

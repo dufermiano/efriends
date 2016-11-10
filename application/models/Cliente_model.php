@@ -9,6 +9,32 @@ class Cliente_model extends CI_Model{
 		$this->load->helper('security');
 	}
 	
+	public function get_historico_cli(){
+	
+		$this->db->select('historico_cliente.Acao_Realizada, historico_cliente.Data_Acao, historico_cliente.Campo_Alterado, historico_cliente.Valor_Antigo, historico_cliente.Valor_Novo');
+		$this->db->from('historico_cliente');
+		$this->db->join('Cliente', "cliente.idCliente = historico_cliente.Cliente_idCliente", 'inner' );
+		$this-> db -> where ('Cliente.Login_Cli', $this->session->userdata('user'));
+		$query = $this->db->get();
+		return $query->result();
+	
+	
+	
+	}
+	
+	public function relatorio_ebook(){
+	
+		$this->db->select('ebook.idEbook, ebook.Titulo_Ebook, log_cliente_ebook.Data_Acao, log_cliente_ebook.Status_Cli_Ebook');
+		$this->db->from('log_cliente_ebook');
+		$this->db->join('Cliente', "cliente.idCliente = log_cliente_ebook.Cliente_idCliente", 'inner' );
+		$this->db->join('Ebook', "ebook.idEbook = log_cliente_ebook.Ebook_idEbook", 'inner' );
+		$this-> db -> where ('Cliente.Login_Cli', $this->session->userdata('user'));
+		$query = $this->db->get();
+		return $query->result();
+	
+	
+	
+	}
 	
 	public function verificaPergunta($login){
 		$this->db->select('Pergunta');

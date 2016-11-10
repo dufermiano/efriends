@@ -17,7 +17,17 @@ class Cliente extends CI_Controller {
 		$dados['clientes'] = $this->cliente->get_cli_lista();
 		echo json_encode($dados['clientes']);
 	}
+	
+	public function relatorio_historico(){
+		$dados['relatorio'] = $this->cliente->get_historico_cli();
+		echo json_encode($dados['relatorio']);
+	}
 
+	public function relatorio_ebook(){
+		$dados['relatorio'] = $this->cliente->relatorio_ebook();
+		echo json_encode($dados['relatorio']);
+	}
+	
 	public function lista_cli_ativo(){
 	
 		$dados['clientes'] = $this->cliente->get_cli_ativo();
